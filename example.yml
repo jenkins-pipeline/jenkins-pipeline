@@ -1,0 +1,11 @@
+---
+:name: "Pipeline example name"
+:jobs:
+- :location: ProjectName
+  :folder: false
+  :name: Unit Test
+  :ci_name: Trunk-UnitTest
+- :location: ProjectName
+  :folder: false
+  :name: Build & Deploy
+  :ci_name: Trunk-Deploy
