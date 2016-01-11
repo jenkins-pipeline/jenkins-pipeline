@@ -8,11 +8,9 @@ TOKEN = ENV["MONITOR_TOKEN"]
 JENKINS_BASE_URL = ENV['MONITOR_JENKINS_BASE_URL']
 
 get '/' do
-  @pipelines = []
-
-  Dir["config/*.yml"].each do |file|
+  @pipelines = Dir["config/*.yml"].map do |file|
     pipeline = YAML.load_file(file)
-    @pipelines.push(get_jobs_from(pipeline))
+    get_jobs_from(pipeline)
  end
 
   erb :index
@@ -22,20 +20,18 @@ def get_jobs_from pipeline
   auth = {username: USERNAME, password: TOKEN}
   jobs = []
 
+  jenkins_base_url = URI.escape("https://#{JENKINS_BASE_URL}/job/#{pipeline[:folder]}-Folder/api/json?tree=jobs[name,builds[number,result]{0,1}]")
+  jobs_in_folder = JSON.parse(HTTParty.get(jenkins_base_url, basic_auth: auth).body)
+
+  puts jobs_in_folder.inspect
+
   pipeline[:jobs].each do |job|
-    jenkins_base_url = "https://#{JENKINS_BASE_URL}/job/#{job[:location]}"
-
-    if job[:folder] == true
-      jenkins_base_url = jenkins_base_url + "-Folder/job/#{job[:location]}"
-    end
-
-    last_build_url = "#{jenkins_base_url}-#{job[:ci_name]}/lastBuild/api/json?token=#{TOKEN}"
-    last_build = JSON.parse(HTTParty.get(last_build_url, basic_auth: auth).body)
-
+    job_name = "#{pipeline[:folder]}-#{job[:ci_name]}"
+    result = jobs_in_folder["jobs"].select {|job_in_folder| job_name == job_in_folder["name"] }.first
     jobs.push({
-    	:name => job[:name],
-      :last_build => last_build["result"].downcase
-    })
+      	:name => job[:name],
+        :last_build => result["builds"].first["result"].downcase
+      })
   end
 
   {
