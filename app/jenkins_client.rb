@@ -1,4 +1,7 @@
 require 'httparty'
+require 'dotenv'
+
+Dotenv.load
 
 USERNAME = ENV["MONITOR_USERNAME"]
 TOKEN = ENV["MONITOR_TOKEN"]
