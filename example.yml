@@ -1,11 +1,12 @@
 ---
-:name: "Pipeline example name"
+:name: "Web Application"
+:folder: "MyFolderName"
 :jobs:
-- :location: ProjectName
-  :folder: false
-  :name: Unit Test
-  :ci_name: Trunk-UnitTest
-- :location: ProjectName
-  :folder: false
-  :name: Build & Deploy
-  :ci_name: Trunk-Deploy
+- :name: Unit Test
+  :ci_name: MyFolderName-UnitTest
+- :name: Build
+  :ci_name: MyFolderName-Build
+  :upstream: MyFolderName-UnitTest
+- :name: Dev Deploy
+  :ci_name: MyFolderName-Dev-Deploy
+  :upstream: MyFolderName-Build
