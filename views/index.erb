@@ -27,7 +27,7 @@
                     <div class="panel-body">
                       <%= job[:name] %>
                       <div class="progress">
-                        <div class="progress-bar progress-bar-<%= job[:last_build] %>" role="progressbar" style="width: 100%">
+                        <div class="progress-bar progress-bar-<%= job[:last_build] %>" role="progressbar" style="width: <%= job[:ran]%>%">
                         </div>
                       </div>
                     </div>
