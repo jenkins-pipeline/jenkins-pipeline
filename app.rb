@@ -8,7 +8,7 @@ get '/' do
   client = JenkinsClient.new
   @pipelines = Dir["config/*.yml"].map do |file|
     pipeline = YAML.load_file(file)
-    jobs_in_folder = client.all_jobs(pipeline)
+    jobs_in_folder = client.all_jobs_from(pipeline)
     create_pipeline(jobs_in_folder, pipeline)
  end
 
@@ -20,7 +20,7 @@ def create_pipeline(jobs_in_folder, pipeline)
 
   has_incomplete = false
   pipeline[:jobs].each do |job|
-    ran = 100
+    ran = true
     job_in_folder = jobs_in_folder["jobs"].select {|job_in_folder| job[:ci_name] == job_in_folder["name"] }.first
     result = job_in_folder["lastCompletedBuild"]["result"].downcase
 
@@ -32,8 +32,8 @@ def create_pipeline(jobs_in_folder, pipeline)
       upstream_in_folder_build = upstream_in_folder["nextBuildNumber"] - 1
 
       if (current_upstream_build != upstream_in_folder_build || has_incomplete == true)
-        result = "not"
-        ran = 0
+        result = "danger"
+        ran = false
         has_incomplete = true
       end
     end

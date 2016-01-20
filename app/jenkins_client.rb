@@ -8,7 +8,7 @@ TOKEN = ENV["MONITOR_TOKEN"]
 JENKINS_BASE_URL = ENV['MONITOR_JENKINS_BASE_URL']
 
 class JenkinsClient
-  def all_jobs pipeline
+  def all_jobs_from pipeline
     auth = {username: USERNAME, password: TOKEN}
     jenkins_base_url = ""
 
