@@ -29,4 +29,4 @@ MONITOR_TOKEN=[YOUR API TOKEN IN JENKINS]
 # Running Application
 
 * Install dependencies by running `bundle install`
-* Run the app by typing `ruby app.rb`
+* Run the app by typing `rackup config.ru`
