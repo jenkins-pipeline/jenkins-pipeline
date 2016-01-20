@@ -6,3 +6,4 @@ gem 'httparty'
 
 gem 'dotenv'
 gem 'json'
+gem 'pry-byebug'

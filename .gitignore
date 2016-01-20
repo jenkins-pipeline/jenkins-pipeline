@@ -2,3 +2,4 @@ config/
 .env
 *.swp
 .DS_Store
+.byebug_history
