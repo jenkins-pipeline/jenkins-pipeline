@@ -29,16 +29,16 @@ def create_pipeline(jobs_in_folder, pipeline)
   jobs = []
 
   has_incomplete = false
-  pipeline[:jobs].each do |job|
+  pipeline["jobs"].each do |job|
     ran = true
-    job_in_folder = jobs_in_folder["jobs"].select {|job_in_folder| job[:ci_name] == job_in_folder["name"] }.first
+    job_in_folder = jobs_in_folder["jobs"].select {|job_in_folder| job["ci_name"] == job_in_folder["name"] }.first
     result = job_in_folder["lastCompletedBuild"]["result"].downcase
 
-    upstream_job = jobs.select {|j| j[:ci_name] == job[:upstream]}.first
-    upstream_in_folder = job_in_folder["upstreamProjects"].select {|upstream| upstream["name"] == job[:upstream]}.first
+    upstream_job = jobs.select {|j| j["ci_name"] == job["upstream"]}.first
+    upstream_in_folder = job_in_folder["upstreamProjects"].select {|upstream| upstream["name"] == job["upstream"]}.first
 
     if (not upstream_job.nil?)
-      current_upstream_build = upstream_job[:number]
+      current_upstream_build = upstream_job["number"]
       upstream_in_folder_build = upstream_in_folder["nextBuildNumber"] - 1
 
       if (current_upstream_build != upstream_in_folder_build || has_incomplete == true)
@@ -51,10 +51,10 @@ def create_pipeline(jobs_in_folder, pipeline)
     if (job_in_folder["lastBuild"]["building"] == true)
       result = "warning progress-bar-striped active"
     end
-
+    require 'pry'; binding.pry
     jobs.push({
-      :name => job[:name],
-      :ci_name => job[:ci_name],
+      :name => job["name"],
+      :ci_name => job["ci_name"],
       :ran => ran,
       :number => job_in_folder["lastCompletedBuild"]["number"],
       :last_build => result
@@ -62,7 +62,7 @@ def create_pipeline(jobs_in_folder, pipeline)
   end
 
   {
-    name: pipeline[:name],
+    name: pipeline["name"],
     jobs: jobs
   }
 end

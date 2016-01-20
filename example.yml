@@ -1,12 +1,12 @@
 ---
-:name: "Web Application"
-:folder: "MyFolderName"
-:jobs:
-- :name: Unit Test
-  :ci_name: MyFolderName-UnitTest
-- :name: Build
-  :ci_name: MyFolderName-Build
-  :upstream: MyFolderName-UnitTest
-- :name: Dev Deploy
-  :ci_name: MyFolderName-Dev-Deploy
-  :upstream: MyFolderName-Build
+name: "Web Application"
+folder: "MyFolderName"
+jobs:
+- name: Unit Test
+  ci_name: MyFolderName-UnitTest
+- name: Build
+  ci_name: MyFolderName-Build
+  upstream: MyFolderName-UnitTest
+- name: Dev Deploy
+  ci_name: MyFolderName-Dev-Deploy
+  upstream: MyFolderName-Build
