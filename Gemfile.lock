@@ -22,4 +22,5 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   httparty
+  json
   sinatra

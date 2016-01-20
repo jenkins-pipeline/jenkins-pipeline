@@ -5,3 +5,4 @@ gem 'sinatra'
 gem 'httparty'
 
 gem 'dotenv'
+gem 'json'
