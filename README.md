@@ -14,6 +14,9 @@ You gonna need to create a `config` directory and a `.env` file in order to run 
 
 Create in the root of the project a `config` directory with your pipeline config files (yml) based on the example provided by one of the maintainers.
 
+### jenkins jobs configuration (folder)
+In case of grouping your jobs in [folders](https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Folders+Plugin) you can speficy the root folder on the configuration
+
 ### .env file
 
 Create an `.env` file in your repository with the following format
