@@ -2,17 +2,27 @@ require 'sinatra'
 require 'httparty'
 require 'tilt/erb'
 require 'yaml'
+require 'json'
 require './app/jenkins_client'
 
 get '/' do
+  @pipelines = pipelines
+  erb :index
+end
+
+get '/api' do
+  content_type :json
+  pipelines.to_json
+end
+
+def pipelines
   client = JenkinsClient.new
-  @pipelines = Dir["config/*.yml"].map do |file|
+
+  Dir["config/*.yml"].map do |file|
     pipeline = YAML.load_file(file)
     jobs_in_folder = client.all_jobs_from(pipeline)
     create_pipeline(jobs_in_folder, pipeline)
- end
-
-  erb :index
+  end
 end
 
 def create_pipeline(jobs_in_folder, pipeline)
@@ -43,7 +53,7 @@ def create_pipeline(jobs_in_folder, pipeline)
     end
 
     jobs.push({
-    	:name => job[:name],
+      :name => job[:name],
       :ci_name => job[:ci_name],
       :ran => ran,
       :number => job_in_folder["lastCompletedBuild"]["number"],
