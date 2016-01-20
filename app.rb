@@ -32,7 +32,7 @@ def create_pipeline(jobs_in_folder, pipeline)
   pipeline["jobs"].each do |job|
     ran = true
     job_in_folder = jobs_in_folder["jobs"].select {|job_in_folder| job["ci_name"] == job_in_folder["name"] }.first
-    result = job_in_folder["lastCompletedBuild"]["result"].downcase
+    result = to_result_class job_in_folder["lastCompletedBuild"]["result"].downcase
 
     upstream_job = jobs.select {|j| j["ci_name"] == job["upstream"]}.first
     upstream_in_folder = job_in_folder["upstreamProjects"].select {|upstream| upstream["name"] == job["upstream"]}.first
@@ -51,7 +51,7 @@ def create_pipeline(jobs_in_folder, pipeline)
     if (job_in_folder["lastBuild"]["building"] == true)
       result = "warning progress-bar-striped active"
     end
-    
+
     jobs.push({
       :name => job["name"],
       :ci_name => job["ci_name"],
@@ -65,4 +65,9 @@ def create_pipeline(jobs_in_folder, pipeline)
     name: pipeline["name"],
     jobs: jobs
   }
+end
+
+def to_result_class result
+  results = { success: "success", failure: "danger" }
+  results[result.to_sym]
 end
