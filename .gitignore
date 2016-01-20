@@ -1,2 +1,4 @@
 config/
 .env
+*.swp
+.DS_Store
