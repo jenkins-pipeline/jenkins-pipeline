@@ -51,7 +51,7 @@ def create_pipeline(jobs_in_folder, pipeline)
     if (job_in_folder["lastBuild"]["building"] == true)
       result = "warning progress-bar-striped active"
     end
-    require 'pry'; binding.pry
+    
     jobs.push({
       :name => job["name"],
       :ci_name => job["ci_name"],
