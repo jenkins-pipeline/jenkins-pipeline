@@ -20,7 +20,7 @@ class JenkinsClient
 
   def url pipeline
     if pipeline.fetch("folder") {false}
-      root_url = "#{pipeline['root_url']}/job/#{pipeline[:folder]}/api/json"
+      root_url = "#{pipeline['root_url']}/job/#{pipeline.fetch("folder")}/api/json"
     else
       root_url = "#{pipeline['root_url']}/api/json"
     end
