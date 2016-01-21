@@ -1,0 +1,9 @@
+$bg-color: #D8D8D8;
+
+.greeting-panel {
+  background-color: lighten($bg-color, 60%);
+  padding: 2em;
+  font-family: helvetica;
+  font-size: 24px;
+  border: 1px solid darken($bg-color, 60%);
+}
