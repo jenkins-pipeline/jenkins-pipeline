@@ -4,11 +4,16 @@ module.exports = {
       public: '../public/'
     },
 
+    npm: {
+      enabled: true,
+      whitelist: [ 'jquery', 'lodash' ]
+    },
+
     files: {
       javascripts: {
         joinTo: {
           'scripts/app.js': /^app\//,
-          'scripts/libs.js': /^vendor\/scripts\//
+          'scripts/libs.js': /^node_modules/
         }
       },
 
@@ -18,6 +23,10 @@ module.exports = {
           'styles/libs.css': /^vendor\/styles\//
         }
       }
+    },
+
+    server: {
+      run: 'yes'
     }
   }
 };

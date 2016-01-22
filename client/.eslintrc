@@ -5,6 +5,10 @@
     "commonjs": true,
     "jasmine": true
   },
+  "globals": {
+    "_": true,
+    "$": true
+  },
   "extends": "eslint:recommended",
   "rules": {
     "no-console": 0,

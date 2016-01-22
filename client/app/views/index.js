@@ -1,11 +1,16 @@
 'use strict';
 
-var greetingView = require('./components/greetingView');
+var _               = require('lodash');
+var h               = require('../helper/helpers');
+var $renderPipeline = require('./components/pipelineView').$render;
 
-var app = {
-  init: function() {
-    document.getElementById('content').innerHTML = greetingView.render();
-  }
+// renderView :: [Pipeline] -> undefined
+var renderView = _.flow(h.map($renderPipeline), h.$setHTML('#content'));
+
+// url :: undefined -> String
+var url = function() { return '/api'; };
+
+module.exports = {
+  // init :: void
+  init: _.flow(url, h.$getJSON(renderView))
 };
-
-module.exports = app;

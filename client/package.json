@@ -1,7 +1,7 @@
 {
-  "name": "kickstart-brunch",
-  "version": "1.0.0",
-  "description": "Personal brunch io kickstarter with javascript, SASS, eslint and jasmine",
+  "name": "jenkins-pipeline-client",
+  "version": "0.1.0",
+  "description": "An attempt to display a set of builds running in Jenkins as a pipeline, a sequence of builds and its states.",
   "scripts": {
     "lint": "esw app/ spec/ --ext .js",
     "_clean": "rm -Rv ../public/* | true",
@@ -14,23 +14,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/junior-ales/kickstart-brunch.git"
+    "url": "git+https://github.com/viniciusgama/jenkins-pipeline"
   },
   "author": "@junior_ales",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/junior-ales/kickstart-brunch.io/issues"
+    "url": "https://github.com/viniciusgama/jenkins-pipeline/issues"
   },
   "devDependencies": {
     "auto-reload-brunch": "^1.8.1",
+    "body-parser": "^1.14.2",
     "brunch": "^2.1.3",
     "clean-css-brunch": "^1.8.0",
     "css-brunch": "^1.7.0",
     "eslint": "^1.10.3",
     "eslint-watch": "^2.1.5",
+    "express": "^4.13.3",
     "jasmine": "^2.4.1",
     "javascript-brunch": "^1.8.0",
+    "morgan": "^1.6.1",
     "sass-brunch": "^1.9.2",
     "uglify-js-brunch": "^1.7.8"
+  },
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "lodash": "^4.0.0"
   }
 }

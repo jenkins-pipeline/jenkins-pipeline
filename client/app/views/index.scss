@@ -1,0 +1,7 @@
+$bg-color: #D8D8D8;
+
+body {
+  font-family: helvetica, sans-serif;
+  color: darken($bg-color, 80%);
+  background-color: $bg-color;
+}
