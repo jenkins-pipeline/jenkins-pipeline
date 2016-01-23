@@ -1,7 +1,13 @@
-$bg-color: #D8D8D8;
+$bg-color: #ECEFF1;
+$font-color: #263238;
 
 body {
-  font-family: helvetica, sans-serif;
-  color: darken($bg-color, 80%);
+  color: $font-color;
   background-color: $bg-color;
+}
+
+.title-widget {
+  position: fixed;
+  bottom: .5em;
+  right: 5em;
 }
