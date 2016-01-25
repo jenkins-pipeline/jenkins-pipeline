@@ -4,10 +4,16 @@ $font-color: #263238;
 body {
   color: $font-color;
   background-color: $bg-color;
+  font-size: 16px;
 }
 
 .title-widget {
   position: fixed;
-  bottom: .5em;
-  right: 5em;
+  top: 0;
+  right: 2em;
+
+  & > .title { font-size: 2.5em; }
 }
+
+.job-card { margin: 1em; }
+.progress { margin: 0; }
