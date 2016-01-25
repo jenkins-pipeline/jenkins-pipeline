@@ -21,6 +21,13 @@
           <div class="panel-body">
             <h3><%= pipeline[:name] %></h3>
             <div class="stages">
+              <div class="col-md-1">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    Revision #<%= pipeline[:revision] %>
+                  </div>
+                </div>
+              </div>
               <% pipeline[:jobs].each do |job| %>
                 <div class="col-md-2">
                   <div class="panel panel-default">

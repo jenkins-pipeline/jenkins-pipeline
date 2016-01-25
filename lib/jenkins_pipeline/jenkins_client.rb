@@ -19,11 +19,7 @@ module JenkinsPipeline
       else
         root_url = "#{pipeline['root_url']}/api/json"
       end
-      URI.escape "#{root_url}?tree=jobs[name,upstreamProjects[name,nextBuildNumber],lastBuild[building],lastCompletedBuild[number,duration,timestamp,result]]"
+      URI.escape "#{root_url}?tree=jobs[name,upstreamProjects[name,nextBuildNumber],lastBuild[building],lastCompletedBuild[number,duration,timestamp,result,changeSet[revisions[*]{0,1}]]]"
     end
-
-
-
-    
   end
 end
