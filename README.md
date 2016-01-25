@@ -5,7 +5,7 @@ An attempt to display a set of builds running in Jenkins as a pipeline, a sequen
 ## Setup
 
 The project was developed with ruby version `ruby 2.0.0p481` and should work with versions above that.
-The client is written in JavaScript and have its instructions on its [README](https://github.com/viniciusgama/jenkins-pipeline/client/README.md).
+The client is written in JavaScript and have its instructions on its [README](https://github.com/viniciusgama/jenkins-pipeline/blob/master/client/README.md).
 
 ## Files and Directories Dependencies
 
