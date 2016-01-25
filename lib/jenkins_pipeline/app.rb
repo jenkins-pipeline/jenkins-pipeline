@@ -65,6 +65,8 @@ module JenkinsPipeline
         jobs.push({
           :name => job["name"],
           :ci_name => job["ci_name"],
+          :timestamp => job_in_folder["lastCompletedBuild"]["timestamp"],
+          :duration => job_in_folder["lastCompletedBuild"]["duration"],
           :ran => ran,
           :number => job_in_folder["lastCompletedBuild"]["number"],
           :last_build => result
