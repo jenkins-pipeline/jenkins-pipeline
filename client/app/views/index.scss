@@ -1,0 +1,19 @@
+$bg-color: #ECEFF1;
+$font-color: #263238;
+
+body {
+  color: $font-color;
+  background-color: $bg-color;
+  font-size: 16px;
+}
+
+.title-widget {
+  position: fixed;
+  top: 0;
+  right: 2em;
+
+  & > .title { font-size: 2.5em; }
+}
+
+.job-card { margin: 1em; }
+.progress { margin: 0; }

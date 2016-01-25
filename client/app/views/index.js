@@ -1,11 +1,20 @@
 'use strict';
 
-var greetingView = require('./components/greetingView');
+var _ = require('lodash');
+var $ = require('jquery');
+var h = require('../helper/helpers');
+var $renderPipeline = require('./components/pipelineView').$render;
 
-var app = {
-  init: function() {
-    document.getElementById('content').innerHTML = greetingView.render();
-  }
+// url :: undefined -> String
+var url = function() { return '/api'; };
+
+// $hideLoader :: void
+var $hideLoader = function() { $('.progress').hide(); };
+
+// renderView :: [Pipeline] -> undefined
+var renderView = _.flow(h.map($renderPipeline), h.$setHTML('#content-container'), $hideLoader);
+
+module.exports = {
+  // init :: void
+  init: _.flow(url, h.$getJSON(renderView))
 };
-
-module.exports = app;
