@@ -9,7 +9,7 @@ var $renderPipeline = require('./components/pipelineView').$render;
 var url = function() { return '/api'; };
 
 // $hideLoader :: void
-var $hideLoader = function() { $('.progress').hide(); };
+var $hideLoader = function() { $('.pipelines-loading').hide(); };
 
 // renderView :: [Pipeline] -> undefined
 var renderView = _.flow(h.map($renderPipeline), h.$setHTML('#content-container'), $hideLoader);

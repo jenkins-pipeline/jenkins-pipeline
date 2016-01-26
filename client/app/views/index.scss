@@ -7,6 +7,10 @@ body {
   font-size: 16px;
 }
 
+.container {
+  width: 90% !important;
+}
+
 .title-widget {
   position: fixed;
   top: 0;
@@ -15,5 +19,12 @@ body {
   & > .title { font-size: 2.5em; }
 }
 
-.job-card { margin: 1em; }
 .progress { margin: 0; }
+
+.pipelines-loading {
+  background-color: #00b0ff; // light-blue accent-3
+
+  & > .loading {
+    background-color: #80d8ff; // light-blue accent-1
+  }
+}
