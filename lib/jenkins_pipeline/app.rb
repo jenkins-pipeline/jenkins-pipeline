@@ -36,7 +36,7 @@ module JenkinsPipeline
         result = to_result_class job_in_folder["lastCompletedBuild"]["result"].downcase
 
         if (index == 0)
-          revisions = job_in_folder["lastCompletedBuild"]["changeSet"]["revisions"]
+          revisions = job_in_folder["lastCompletedBuild"]["changeSet"]["revisions"] || []
           if (revisions.any?)
             revision = revisions[0]["revision"]
           end
