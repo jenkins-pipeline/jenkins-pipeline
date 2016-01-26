@@ -1,6 +1,11 @@
-.pipeline-container {
+.container .row:first-of-type .pipeline-title {
+  margin-top: 20px;
+}
+
+.pipeline-title {
+  margin-bottom: 0;
 
   & > .title {
-    font-size: 2em;
+    font-size: 1.5em;
   }
 }

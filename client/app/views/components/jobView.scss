@@ -1,0 +1,20 @@
+.job-card {
+  margin: 1em;
+  padding: 0 !important;
+
+  & > .status {
+    padding: 10px 20px;
+    color: white;
+
+    &.success { background-color: #2e7d32; }
+    //&.failure { background-color: #c62828; }
+  }
+
+  & > .title-wrapper {
+    padding-bottom: 15px;
+
+    & > .title {
+      font-size: 1em;
+    }
+  }
+}

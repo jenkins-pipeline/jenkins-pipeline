@@ -24,12 +24,17 @@ var $setHTML = _.curry(function(selector, html) {
   $(selector).html(html);
 });
 
+var $appendInto = _.curry(function(wrapperSelector, selector) {
+  return $(wrapperSelector).append($(selector));
+});
+
 var helpers = {
   prop: prop,
   map: map,
   trace: trace,
   $getJSON: $getJSON,
-  $setHTML: $setHTML
+  $setHTML: $setHTML,
+  $appendInto: $appendInto
 };
 
 module.exports = helpers;
