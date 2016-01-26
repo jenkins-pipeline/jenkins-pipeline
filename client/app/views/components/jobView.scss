@@ -6,8 +6,8 @@
     padding: 10px 20px;
     color: white;
 
-    &.success { background-color: #2e7d32; }
-    //&.failure { background-color: #c62828; }
+    &[data-status=success] { background-color: #2e7d32; }
+    &[data-status=failure] { background-color: #c62828; }
   }
 
   & > .title-wrapper {

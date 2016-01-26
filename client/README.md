@@ -29,3 +29,5 @@ Available via `npm run-script`:
   npm run build:prod
     npm run build -- -p
 ```
+
+The command `npm start` will start a local web server and can be accessed via [localhost:3333](http://localhost:3333).

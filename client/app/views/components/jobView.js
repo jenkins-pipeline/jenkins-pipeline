@@ -5,11 +5,11 @@ var renderJob = function(job) {
            '<div class="title-wrapper card-content truncate">' +
              '<span class="title card-title">' + job.name + '</span>' +
            '</div>' +
-           '<div class="status ' + job.last_build + ' card-action">' +
+           '<div class="status card-action" data-status="' + job.last_build + '">' +
            '</div>' +
          '</article>';
 };
 
 module.exports = {
-  $render: renderJob
+  render: renderJob
 };

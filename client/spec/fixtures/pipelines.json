@@ -19,7 +19,7 @@
         "duration": 27581,
         "ran": true,
         "number": 226,
-        "last_build": "success"
+        "last_build": "failure"
       }
     ]
   },

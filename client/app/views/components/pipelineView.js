@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var $ = require('jquery');
-var $renderJob = require('./jobView').$render;
+var renderJob = require('./jobView').render;
 
 // $divider :: undefined -> DOM
 var $divider = function() {
@@ -22,7 +22,7 @@ var $renderTitle = function(name) {
 
 // $renderJobs :: [Job] -> DOM
 var $renderJobs = function(jobs) {
-  return $('<section>', { 'class': 'row' }).append(jobs.map($renderJob));
+  return $('<section>', { 'class': 'row' }).append(jobs.map(renderJob));
 };
 
 // $toPipelineDOM :: Pipeline -> PipelineDOM
