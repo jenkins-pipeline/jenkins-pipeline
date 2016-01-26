@@ -6,6 +6,9 @@ var renderJob = function(job) {
              '<span class="title card-title">' + job.name + '</span>' +
            '</div>' +
            '<div class="status card-action" data-status="' + job.last_build + '">' +
+             '<div class="loading progress" data-job-running="' + !job.ran + '">' +
+               '<div class="indeterminate"></div>' +
+             '</div>' +
            '</div>' +
          '</article>';
 };

@@ -20,3 +20,11 @@ body {
 }
 
 .progress { margin: 0; }
+
+.pipelines-loading {
+  background-color: #00b0ff; // light-blue accent-3
+
+  & > .loading {
+    background-color: #80d8ff; // light-blue accent-1
+  }
+}

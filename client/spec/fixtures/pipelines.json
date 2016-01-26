@@ -19,7 +19,7 @@
         "duration": 27581,
         "ran": true,
         "number": 226,
-        "last_build": "failure"
+        "last_build": "danger"
       }
     ]
   },
@@ -32,7 +32,7 @@
         "ci_name": "LatamApiCustomerProfiles-Trunk-UnitTest",
         "timestamp": 1453740175352,
         "duration": 90934,
-        "ran": true,
+        "ran": false,
         "number": 23,
         "last_build": "success"
       },
@@ -41,9 +41,9 @@
         "ci_name": "LatamApiCustomerProfiles-Trunk-Metrics-Automation",
         "timestamp": 1453740275023,
         "duration": 134781,
-        "ran": true,
+        "ran": false,
         "number": 400,
-        "last_build": "success"
+        "last_build": "danger"
       },
       {
         "name": "Beta Deploy",

@@ -12,4 +12,14 @@ describe('Job View', function() {
     var job = { last_build: 'theJobStatus' }; // eslint-disable-line
     expect(JobView.render(job)).toContain('data-status="theJobStatus"');
   });
+
+  it('should tell when job is running', function() {
+    var job = { ran: false };
+    expect(JobView.render(job)).toContain('data-job-running="true"');
+  });
+
+  it('should tell when job is not running', function() {
+    var job = { ran: true };
+    expect(JobView.render(job)).toContain('data-job-running="false"');
+  });
 });
