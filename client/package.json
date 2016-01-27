@@ -1,6 +1,6 @@
 {
   "name": "jenkins-pipeline-client",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An attempt to display a set of builds running in Jenkins as a pipeline, a sequence of builds and its states.",
   "scripts": {
     "lint": "esw app/ spec/ --ext .js",
@@ -10,7 +10,8 @@
     "build": "brunch build",
     "build:prod": "npm run build -- -p",
     "prestart": "npm run prebuild",
-    "start": "brunch watch --server"
+    "start": "brunch watch --server",
+    "watch": "watch 'npm run lint && npm run test' app/ spec/ -d"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,8 @@
     "javascript-brunch": "^1.8.0",
     "morgan": "^1.6.1",
     "sass-brunch": "^1.9.2",
-    "uglify-js-brunch": "^1.7.8"
+    "uglify-js-brunch": "^1.7.8",
+    "watch": "^0.17.1"
   },
   "dependencies": {
     "jquery": "^2.2.0",
