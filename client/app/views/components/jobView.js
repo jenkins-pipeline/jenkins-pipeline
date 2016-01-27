@@ -1,5 +1,6 @@
 'use strict';
 
+// renderJob :: Job -> String
 var renderJob = function(job) {
   return '<article class="job-card col s12 m2 card">' +
            '<div class="title-wrapper card-content truncate">' +
