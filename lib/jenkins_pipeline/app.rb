@@ -3,7 +3,7 @@ module JenkinsPipeline
   class App < Sinatra::Base
 
     set :views, './views'
-    set :public, './public'
+    set :public_folder, './public'
 
     get '/' do
       @pipelines = pipelines
