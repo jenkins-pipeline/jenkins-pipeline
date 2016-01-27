@@ -22,4 +22,9 @@ describe('Job View', function() {
     var job = { ran: true };
     expect(JobView.render(job)).toContain('data-job-running="false"');
   });
+
+  it('should add a title HTML property so it reveal collapsed values', function() {
+    var job = { name: 'a really big job name that do not fit in the box' };
+    expect(JobView.render(job)).toContain('title="a really big job name that do not fit in the box"');
+  });
 });
