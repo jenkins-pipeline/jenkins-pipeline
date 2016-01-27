@@ -24,9 +24,11 @@ var $setHTML = _.curry(function(selector, html) {
   $(selector).html(html);
 });
 
-var $appendInto = _.curry(function(wrapperSelector, selector) {
-  return $(wrapperSelector).append($(selector));
-});
+var $hide = function(selector) {
+  return function () {
+    $(selector).hide();
+  };
+};
 
 var helpers = {
   prop: prop,
@@ -34,7 +36,7 @@ var helpers = {
   trace: trace,
   $getJSON: $getJSON,
   $setHTML: $setHTML,
-  $appendInto: $appendInto
+  $hide: $hide
 };
 
 module.exports = helpers;

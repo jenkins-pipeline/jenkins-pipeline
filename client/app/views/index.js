@@ -1,18 +1,14 @@
 'use strict';
 
 var _ = require('lodash');
-var $ = require('jquery');
-var h = require('../helper/helpers');
-var $renderPipeline = require('./components/pipelineView').$render;
+var h = require('../helpers/helpers');
+var renderPipeline = require('./components/pipelineView').render;
 
 // url :: undefined -> String
 var url = function() { return '/api'; };
 
-// $hideLoader :: void
-var $hideLoader = function() { $('.pipelines-loading').hide(); };
-
 // renderView :: [Pipeline] -> undefined
-var renderView = _.flow(h.map($renderPipeline), h.$setHTML('#content-container'), $hideLoader);
+var renderView = _.flow(h.map(renderPipeline), h.$setHTML('#content-container'), h.$hide('.pipelines-loading'));
 
 module.exports = {
   // init :: void
