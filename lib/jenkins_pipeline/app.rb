@@ -33,7 +33,7 @@ module JenkinsPipeline
       pipeline["jobs"].each_with_index do |job, index|
         ran = true
         job_in_folder = jobs_in_folder["jobs"].select {|job_in_folder| job["ci_name"] == job_in_folder["name"] }.first
-        result = to_result_class job_in_folder["lastCompletedBuild"]["result"].downcase
+        job_instance = Job.new(job_in_folder)
 
         if (index == 0)
           revisions = job_in_folder["lastCompletedBuild"]["changeSet"]["revisions"] || []
@@ -51,25 +51,21 @@ module JenkinsPipeline
             upstream_in_folder_build = upstream_in_folder["nextBuildNumber"] - 1
 
             if (current_upstream_build != upstream_in_folder_build || has_incomplete == true)
-              result = "danger"
+              job_instance.result = "danger"
               ran = false
               has_incomplete = true
             end
           end
         end
 
-        if (job_in_folder["lastBuild"]["building"] == true)
-          result = "warning progress-bar-striped active"
-        end
-
         jobs.push({
-          name: job["name"],
-          ci_name: job["ci_name"],
-          timestamp: job_in_folder["lastCompletedBuild"]["timestamp"],
-          duration: job_in_folder["lastCompletedBuild"]["duration"],
+          name: job_instance.name,
+          ci_name: job_instance.ci_name,
+          timestamp: job_instance.timestamp,
+          duration: job_instance.duration,
           ran: ran,
-          number: job_in_folder["lastCompletedBuild"]["number"],
-          last_build: result
+          number: job_instance.number,
+          last_build: job_instance.result_class
         })
       end
 
@@ -80,9 +76,5 @@ module JenkinsPipeline
       }
     end
 
-    def to_result_class result
-      results = { success: "success", failure: "danger" }
-      results[result.to_sym]
-    end
   end
 end
