@@ -28,6 +28,8 @@ Available via `npm run-script`:
     brunch build
   npm run build:prod
     npm run build -- -p
+  npm run watch
+    watch 'npm run lint && npm run test' app/ spec/ -d
 ```
 
 The command `npm start` will start a local web server and can be accessed via [localhost:3333](http://localhost:3333).
