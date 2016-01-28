@@ -5,10 +5,14 @@ var h = require('../helpers/helpers');
 var renderPipeline = require('./components/pipelineView').render;
 
 // url :: undefined -> String
-var url = function() { return '/api'; };
+var url = function() { return '/api/pipelines'; };
 
 // renderView :: [Pipeline] -> undefined
-var renderView = _.flow(h.map(renderPipeline), h.$setHTML('#content-container'), h.$hide('.pipelines-loading'));
+var renderView = _.flow(
+  h.map(renderPipeline),
+  h.$setHTML('#content-container'),
+  h.$hide('.pipelines-loading')
+);
 
 module.exports = {
   // init :: void

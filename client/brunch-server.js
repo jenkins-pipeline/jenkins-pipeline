@@ -16,7 +16,7 @@ module.exports = function startServer(port, path, callback) {
   app.use(bodyParser.urlencoded({ extended: true }));
 
   // GET `/api` -> JSON mocking the pipelines
-  app.get('/api', function(req, res) {
+  app.get('/api/pipelines', function(req, res) {
     res.json(pipelines);
   });
 
