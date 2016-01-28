@@ -15,7 +15,10 @@ describe JenkinsPipeline::Job do
           "duration"=> 3822739,
           "number"=> 4410,
           "result"=> "SUCCESS",
-          "timestamp"=> 1453828785568
+          "timestamp"=> 1453828785568,
+          "changeSet"=>{
+            "revisions"=>[]
+          }
         }
      }
   }

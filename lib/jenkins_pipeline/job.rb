@@ -11,11 +11,16 @@ module JenkinsPipeline
       @duration = job_hash["lastCompletedBuild"]["duration"]
       @timestamp = job_hash["lastCompletedBuild"]["timestamp"]
       @number = job_hash["lastCompletedBuild"]["number"]
+      @revisions = job_hash["lastCompletedBuild"]["changeSet"]["revisions"] || []
     end
 
     def result_class
       return "warning progress-bar-striped active" if last_build_running?
       to_result_class @result
+    end
+
+    def revision
+      @revisions.first["revision"] if @revisions.any?
     end
 
     private
@@ -29,6 +34,5 @@ module JenkinsPipeline
       results = { success: "success", failure: "danger" }
       results[result.to_sym]
     end
-
   end
 end

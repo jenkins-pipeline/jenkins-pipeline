@@ -27,20 +27,14 @@ module JenkinsPipeline
 
     def create_pipeline(jobs_in_folder, pipeline)
       jobs = []
-      revision = 0
 
+      pipeline_instance = Pipeline.new pipeline["name"]
       has_incomplete = false
       pipeline["jobs"].each_with_index do |job, index|
         ran = true
         job_in_folder = jobs_in_folder["jobs"].select {|job_in_folder| job["ci_name"] == job_in_folder["name"] }.first
-        job_instance = Job.new(job_in_folder)
+        job_instance = Job.new(job_in_folder, index)
 
-        if (index == 0)
-          revisions = job_in_folder["lastCompletedBuild"]["changeSet"]["revisions"] || []
-          if (revisions.any?)
-            revision = revisions[0]["revision"]
-          end
-        end
 
         upstream_job = jobs.select {|j| j["ci_name"] == job["upstream"]}.first
         upstream_in_folder = job_in_folder["upstreamProjects"].select {|upstream| upstream["name"] == job["upstream"]}.first
@@ -58,6 +52,8 @@ module JenkinsPipeline
           end
         end
 
+        pipeline_instance.add_job job_instance, is_first?(index)
+
         jobs.push({
           name: job_instance.name,
           ci_name: job_instance.ci_name,
@@ -70,10 +66,16 @@ module JenkinsPipeline
       end
 
       {
-        name: pipeline["name"],
-        revision: revision,
+        name: pipeline_instance.name,
+        revision: pipeline_instance.revision,
         jobs: jobs
       }
+    end
+
+    private
+
+    def is_first? index
+      index == 0
     end
 
   end
