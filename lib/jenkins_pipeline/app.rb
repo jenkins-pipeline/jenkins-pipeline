@@ -33,7 +33,7 @@ module JenkinsPipeline
       pipeline["jobs"].each_with_index do |job, index|
         ran = true
         job_in_folder = jobs_in_folder["jobs"].select {|job_in_folder| job["ci_name"] == job_in_folder["name"] }.first
-        job_instance = Job.new(job_in_folder, index)
+        job_instance = Job.new(job_in_folder)
 
 
         upstream_job = jobs.select {|j| j["ci_name"] == job["upstream"]}.first
