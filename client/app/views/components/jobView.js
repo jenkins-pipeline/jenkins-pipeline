@@ -17,18 +17,26 @@ var formatDuration = humanizeDuration.humanizer({
   delimiter: ''
 });
 
+var runningJob = '<div class="loading progress"><div class="indeterminate"></div></div>';
+
+// completedJob :: Int -> String
+var completedJob = function(duration) {
+  return '<span class="duration valign" title="Job took ' + humanizeDuration(duration) + ' running last time">' +
+           formatDuration(duration) +
+         '</span>';
+};
+
 // renderJob :: Job -> String
 var renderJob = function(job) {
+  var isJobRunning = !job.ran;
+  var jobStatus = isJobRunning ? runningJob : completedJob(job.duration);
+
   return '<article class="job-card col s12 m2 card">' +
            '<div class="title-wrapper card-content truncate">' +
              '<span title="'+ job.name +'" class="title card-title">'+ job.name +'</span>' +
            '</div>' +
-           '<div class="status card-action" data-status="' + job.last_build + '">' +
-           // TODO add an icon and align to the right of the box
-             '<span class="duration">' + formatDuration(job.duration) + '</span>' +
-             '<div class="loading progress" data-job-running="' + !job.ran + '">' +
-               '<div class="indeterminate"></div>' +
-             '</div>' +
+           '<div class="job-status card-action valign-wrapper" data-status="' + job.last_build + '">' +
+             jobStatus +
            '</div>' +
          '</article>';
 };

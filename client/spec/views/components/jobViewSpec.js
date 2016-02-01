@@ -13,14 +13,16 @@ describe('Job View', function() {
     expect(JobView.render(job)).toContain('data-status="theJobStatus"');
   });
 
-  it('should tell when job is running', function() {
+  it('should show progress bar when job is running', function() {
     var job = { ran: false };
-    expect(JobView.render(job)).toContain('data-job-running="true"');
+    expect(JobView.render(job)).toContain('loading progress');
+    expect(JobView.render(job)).toContain('indeterminate');
   });
 
-  it('should tell when job is not running', function() {
+  it('should not show progress bar when job is not running', function() {
     var job = { ran: true };
-    expect(JobView.render(job)).toContain('data-job-running="false"');
+    expect(JobView.render(job)).not.toContain('loading progress');
+    expect(JobView.render(job)).not.toContain('indeterminate');
   });
 
   it('should add a title HTML property so it reveal collapsed values', function() {
@@ -33,9 +35,9 @@ describe('Job View', function() {
     var TWO_MIN = 120000;
     var TWENTY_MIN_TWENTY_SEC = 1220000;
 
-    var jobRanForSeconds = { duration: TWELVE_SEC };
-    var jobRanForMinutes = { duration: TWO_MIN };
-    var jobRanForMinutesAndSeconds = { duration: TWENTY_MIN_TWENTY_SEC };
+    var jobRanForSeconds = { duration: TWELVE_SEC, ran: true };
+    var jobRanForMinutes = { duration: TWO_MIN, ran: true };
+    var jobRanForMinutesAndSeconds = { duration: TWENTY_MIN_TWENTY_SEC, ran: true };
 
     expect(JobView.render(jobRanForSeconds)).toContain('12s');
     expect(JobView.render(jobRanForMinutes)).toContain('2min');

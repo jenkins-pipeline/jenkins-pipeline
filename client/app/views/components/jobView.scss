@@ -1,32 +1,17 @@
+@mixin progress-bar($baseColor) {
+  background-color: $baseColor;
+
+  & > .loading {
+    background-color: lighten($baseColor, 20%);
+
+    .indeterminate { background-color: lighten($baseColor, 40%); }
+  }
+}
+
 .job-card {
   margin: 1em;
   padding: 0 !important;
 
-  & > .status {
-    padding: 10px 20px;
-    color: white;
-    min-height: 25px;
-
-    &[data-status=success] {
-      background-color: #2e7d32; // green darken-3
-
-      & > .loading {
-        background-color: #43a047; // green darken-1
-
-        .indeterminate { background-color: #c8e6c9; } // green lighten-4
-      }
-    }
-
-    &[data-status=danger] {
-      background-color: #c62828; // red darken-3
-
-      & > .loading {
-        background-color: #e53935; // red darken-1
-
-        .indeterminate { background-color: #ffcdd2; } // red lighten-4
-      }
-    }
-  }
 
   & > .title-wrapper {
     padding-bottom: 15px;
@@ -37,4 +22,12 @@
   }
 }
 
-[data-job-running=false] { display: none; }
+.job-status {
+  padding: 10px 20px !important;
+  color: white;
+  min-height: 40px;
+  font-size: .75em;
+}
+
+[data-status=success] { @include progress-bar(#2e7d32); }
+[data-status=danger] { @include progress-bar(#c62828); }
