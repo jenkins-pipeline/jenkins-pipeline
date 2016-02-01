@@ -10,7 +10,7 @@ module JenkinsPipeline
       erb :index
     end
 
-    get '/api' do
+    get '/api/pipelines' do
       content_type :json
       pipelines.to_json
     end
