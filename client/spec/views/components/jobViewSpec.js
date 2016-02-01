@@ -27,4 +27,18 @@ describe('Job View', function() {
     var job = { name: 'a really big job name that do not fit in the box' };
     expect(JobView.render(job)).toContain('title="a really big job name that do not fit in the box"');
   });
+
+  it('should display how much time took the job to run last time', function() {
+    var TWELVE_SEC = 12000;
+    var TWO_MIN = 120000;
+    var TWENTY_MIN_TWENTY_SEC = 1220000;
+
+    var jobRanForSeconds = { duration: TWELVE_SEC };
+    var jobRanForMinutes = { duration: TWO_MIN };
+    var jobRanForMinutesAndSeconds = { duration: TWENTY_MIN_TWENTY_SEC };
+
+    expect(JobView.render(jobRanForSeconds)).toContain('12s');
+    expect(JobView.render(jobRanForMinutes)).toContain('2min');
+    expect(JobView.render(jobRanForMinutesAndSeconds)).toContain('20min20s');
+  });
 });

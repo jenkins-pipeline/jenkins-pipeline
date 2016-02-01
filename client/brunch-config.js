@@ -6,7 +6,7 @@ module.exports = {
 
     npm: {
       enabled: true,
-      whitelist: [ 'jquery', 'lodash' ]
+      whitelist: [ 'jquery', 'lodash', 'humanize-duration' ]
     },
 
     files: {
