@@ -27,6 +27,15 @@
   color: white;
   min-height: 40px;
   font-size: .75em;
+
+  &.row { margin: 0; }
+}
+
+.duration-wrapper {
+  text-align: right;
+  padding: 0 !important;
+
+  & > .icon { margin-right: 5px; }
 }
 
 [data-status=success] { @include progress-bar(#2e7d32); }
