@@ -15,13 +15,13 @@ describe('Job View', function() {
   });
 
   it('should show progress bar when job is running', function() {
-    var job = { ran: false };
+    var job = { last_build: 'running' }; // eslint-disable-line
     expect(JobView.render(job)).toContain('loading progress');
     expect(JobView.render(job)).toContain('indeterminate');
   });
 
   it('should not show progress bar when job is not running', function() {
-    var job = { ran: true };
+    var job = { last_build: 'success' }; // eslint-disable-line
     expect(JobView.render(job)).not.toContain('loading progress');
     expect(JobView.render(job)).not.toContain('indeterminate');
   });
@@ -36,9 +36,9 @@ describe('Job View', function() {
     var TWO_MIN = 120000;
     var TWENTY_MIN_TWENTY_SEC = 1220000;
 
-    var jobRanForSeconds = { duration: TWELVE_SEC, ran: true };
-    var jobRanForMinutes = { duration: TWO_MIN, ran: true };
-    var jobRanForMinutesAndSeconds = { duration: TWENTY_MIN_TWENTY_SEC, ran: true };
+    var jobRanForSeconds = { duration: TWELVE_SEC };
+    var jobRanForMinutes = { duration: TWO_MIN };
+    var jobRanForMinutesAndSeconds = { duration: TWENTY_MIN_TWENTY_SEC };
 
     expect(JobView.render(jobRanForSeconds)).toContain('12s');
     expect(JobView.render(jobRanForMinutes)).toContain('2min');
@@ -49,8 +49,8 @@ describe('Job View', function() {
     var yesterdayInMs = moment(moment().subtract(1, 'd')).format('x');
     var oneHourAgoInMs = moment(moment().subtract(1, 'h')).format('x');
 
-    var jobRanYesterday = { timestamp: yesterdayInMs, ran: true };
-    var jobRanAnHourAgo = { timestamp: oneHourAgoInMs, ran: true };
+    var jobRanYesterday = { timestamp: yesterdayInMs };
+    var jobRanAnHourAgo = { timestamp: oneHourAgoInMs };
 
     expect(JobView.render(jobRanYesterday)).toContain('a day ago');
     expect(JobView.render(jobRanAnHourAgo)).toContain('an hour ago');

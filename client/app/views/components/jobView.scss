@@ -14,6 +14,7 @@
 
   & > [data-status=success] { @include progress-bar(#2e7d32); }
   & > [data-status=failure] { @include progress-bar(#c62828); }
+  & > [data-status=running] { @include progress-bar(#546e7a); }
 
   & > .title-wrapper {
     padding-bottom: 15px;

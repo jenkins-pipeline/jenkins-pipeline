@@ -52,7 +52,7 @@
         "duration": 36986,
         "ran": true,
         "number": 497,
-        "last_build": "success"
+        "last_build": "running"
       },
       {
         "name": "Beta Mocks Deploy",

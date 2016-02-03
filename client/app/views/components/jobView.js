@@ -45,7 +45,7 @@ var completedJob = function(job) {
 
 // renderJob :: Job -> String
 var renderJob = function(job) {
-  var isJobRunning = !job.ran;
+  var isJobRunning = job.last_build === 'running';
   var jobStatus = isJobRunning ? runningJob : completedJob(job);
 
   return '<article class="job-card col s12 m2 card">' +
