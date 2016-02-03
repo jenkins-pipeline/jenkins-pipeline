@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe JenkinsPipeline::Job do
 
-  let(:result) { "" }
   let(:name) { "Unit Test" }
-  let(:ran) { true }
   let(:jenkins_response) {
     {
       "name" => "Functional",
@@ -30,7 +28,7 @@ describe JenkinsPipeline::Job do
     }
   }
 
-  let(:subject) { described_class.new jenkins_response, name, result, ran }
+  let(:subject) { described_class.new jenkins_response, name }
 
   describe "#name" do
     it { expect(subject.name).to eq name }
@@ -52,16 +50,7 @@ describe JenkinsPipeline::Job do
     it { expect(subject.number).to eq 4410 }
   end
 
-  describe "#ran" do
-    it { expect(subject.ran).to eq true }
-  end
-
   describe "#result_class" do
-    context "has result" do
-      let(:another_subject) { described_class.new jenkins_response, name, "failure", ran }
-      it { expect(another_subject.result_class).to eq "failure" }
-    end
-
     context "job is running" do
       before { jenkins_response["lastBuild"] = { "building" => true } }
       it { expect(subject.result_class).to eq "running" }

@@ -1,17 +1,16 @@
 module JenkinsPipeline
   class Job
-    attr_reader :name, :result, :ci_name, :duration, :finished_at, :number, :ran
+    attr_reader :name, :status, :ci_name, :duration, :finished_at, :number, :ran
 
-    def initialize job_hash, name, result, ran
+    def initialize job_hash, name
       @name = name
       @ci_name = job_hash["name"]
-      @result = result.empty? ? job_hash["lastCompletedBuild"]["result"].downcase : result
+      @result = job_hash["lastCompletedBuild"]["result"].downcase
       @status = job_hash["lastBuild"]
       @duration = job_hash["lastCompletedBuild"]["duration"]
       @finished_at = job_hash["lastCompletedBuild"]["timestamp"]
       @number = job_hash["lastCompletedBuild"]["number"]
       @revisions = job_hash["lastCompletedBuild"]["changeSet"]["revisions"] || []
-      @ran = ran
     end
 
     def result_class
