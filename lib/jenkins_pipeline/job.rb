@@ -1,14 +1,14 @@
 module JenkinsPipeline
   class Job
-    attr_reader :name, :result, :ci_name, :duration, :timestamp, :number, :ran
+    attr_reader :name, :result, :ci_name, :duration, :finished_at, :number, :ran
 
     def initialize job_hash, name, result, ran
       @name = name
       @ci_name = job_hash["name"]
       @result = result.empty? ? job_hash["lastCompletedBuild"]["result"].downcase : result
-      @last_build = job_hash["lastBuild"]
+      @status = job_hash["lastBuild"]
       @duration = job_hash["lastCompletedBuild"]["duration"]
-      @timestamp = job_hash["lastCompletedBuild"]["timestamp"]
+      @finished_at = job_hash["lastCompletedBuild"]["timestamp"]
       @number = job_hash["lastCompletedBuild"]["number"]
       @revisions = job_hash["lastCompletedBuild"]["changeSet"]["revisions"] || []
       @ran = ran
@@ -26,19 +26,16 @@ module JenkinsPipeline
     def serialize
       {
         name: @name,
-        ci_name: @ci_name,
-        timestamp: @timestamp,
+        finishedAt: @finished_at,
         duration: @duration,
-        ran: @ran,
-        number: @number,
-        last_build: result_class
+        status: result_class
       }
     end
 
     private
 
     def last_build_running?
-      return @last_build.fetch("building") { false } if @last_build
+      return @status.fetch("building") { false } if @status
       false
     end
 

@@ -10,18 +10,18 @@ describe('Job View', function() {
   });
 
   it('should have status property', function() {
-    var job = { last_build: 'theJobStatus' }; // eslint-disable-line
+    var job = { status: 'theJobStatus' };
     expect(JobView.render(job)).toContain('data-status="theJobStatus"');
   });
 
   it('should show progress bar when job is running', function() {
-    var job = { last_build: 'running' }; // eslint-disable-line
+    var job = { status: 'running' };
     expect(JobView.render(job)).toContain('loading progress');
     expect(JobView.render(job)).toContain('indeterminate');
   });
 
   it('should not show progress bar when job is not running', function() {
-    var job = { last_build: 'success' }; // eslint-disable-line
+    var job = { status: 'success' };
     expect(JobView.render(job)).not.toContain('loading progress');
     expect(JobView.render(job)).not.toContain('indeterminate');
   });
@@ -49,8 +49,8 @@ describe('Job View', function() {
     var yesterdayInMs = moment(moment().subtract(1, 'd')).format('x');
     var oneHourAgoInMs = moment(moment().subtract(1, 'h')).format('x');
 
-    var jobRanYesterday = { timestamp: yesterdayInMs };
-    var jobRanAnHourAgo = { timestamp: oneHourAgoInMs };
+    var jobRanYesterday = { finishedAt: yesterdayInMs };
+    var jobRanAnHourAgo = { finishedAt: oneHourAgoInMs };
 
     expect(JobView.render(jobRanYesterday)).toContain('a day ago');
     expect(JobView.render(jobRanAnHourAgo)).toContain('an hour ago');
