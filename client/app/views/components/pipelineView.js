@@ -5,10 +5,12 @@ var jobView = require('./jobView');
 // renderPipeline :: Pipeline -> String
 var renderPipeline = function(pipeline) {
   var jobs = pipeline.jobs || [];
+  var revision = 'revision #' + pipeline.revision;
 
   return '<section class="row">' +
            '<header class="pipeline-title row">' +
-             '<h4 class="title col s12">' + pipeline.name + '</h4>' +
+             '<span class="title col">' + pipeline.name + '</span>' +
+             '<span class="revision col">' + revision + '</span>' +
            '</header>' +
            '<section class="row">' +
              jobs.map(jobView.render).join('') +

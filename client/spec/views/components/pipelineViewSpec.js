@@ -22,7 +22,9 @@ describe('Job View', function() {
     expect(PipelineView.render(pipeline)).toContain('job3');
   });
 
-  it('should have a divider', function() {
-    expect(PipelineView.render({})).toContain('class="divider"');
+  it('should show the pipeline revision', function() {
+    var pipeline = { revision: '444' };
+
+    expect(PipelineView.render(pipeline)).toContain('revision #444');
   });
 });

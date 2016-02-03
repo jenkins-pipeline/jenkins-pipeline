@@ -5,7 +5,10 @@
 .pipeline-title {
   margin-bottom: 0;
 
-  & > .title {
-    font-size: 1.5em;
+  & > .title { font-size: 1.5em; }
+
+  & > .revision {
+    color: #9e9e9e;
+    margin: .5em 0;
   }
 }
