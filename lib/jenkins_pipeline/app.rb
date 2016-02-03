@@ -1,12 +1,10 @@
 module JenkinsPipeline
   class App < Sinatra::Base
 
-    set :views, './views'
     set :public_folder, './public'
 
     get '/' do
-      @pipelines = pipelines
-      erb :index
+      send_file File.join(settings.public_folder, 'index.html')
     end
 
     get '/api/pipelines' do
