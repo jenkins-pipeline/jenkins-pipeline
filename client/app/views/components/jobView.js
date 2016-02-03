@@ -1,5 +1,6 @@
 'use strict';
 
+var moment = require('moment');
 var humanizeDuration = require('humanize-duration');
 
 var formatDuration = humanizeDuration.humanizer({
@@ -19,19 +20,33 @@ var formatDuration = humanizeDuration.humanizer({
 
 var runningJob = '<div class="loading progress col s12"><div class="indeterminate"></div></div>';
 
-// completedJob :: Int -> String
-var completedJob = function(duration) {
+// jobDuration :: Int -> String
+var jobDuration = function(duration) {
   var durationDescription = 'Job took ' + humanizeDuration(duration) + ' running last time';
 
-  return '<div class="duration-wrapper col s12" title="' + durationDescription + '">' +
+  return '<div class="duration col s5" title="' + durationDescription + '">' +
            '<i class="icon fa fa-clock-o"></i>' + formatDuration(duration) +
          '</div>';
+};
+
+// jobLastRun :: Int -> String
+var jobLastRun = function(lastRunInMs) {
+  var lastRunDescription = 'Last time the job ran was ' + moment(Number(lastRunInMs)).fromNow();
+
+  return '<div class="lastrun col s7 truncate" title="' + lastRunDescription + '">' +
+           '<i class="icon fa fa-flag-checkered"></i>' + moment(Number(lastRunInMs)).fromNow() +
+         '</div>';
+};
+
+// completedJob :: Job -> String
+var completedJob = function(job) {
+  return jobLastRun(job.timestamp).concat(jobDuration(job.duration));
 };
 
 // renderJob :: Job -> String
 var renderJob = function(job) {
   var isJobRunning = !job.ran;
-  var jobStatus = isJobRunning ? runningJob : completedJob(job.duration);
+  var jobStatus = isJobRunning ? runningJob : completedJob(job);
 
   return '<article class="job-card col s12 m2 card">' +
            '<div class="title-wrapper card-content truncate">' +
