@@ -13,7 +13,7 @@
   padding: 0 !important;
 
   & > [data-status=success] { @include progress-bar(#2e7d32); }
-  & > [data-status=danger] { @include progress-bar(#c62828); }
+  & > [data-status=failure] { @include progress-bar(#c62828); }
 
   & > .title-wrapper {
     padding-bottom: 15px;

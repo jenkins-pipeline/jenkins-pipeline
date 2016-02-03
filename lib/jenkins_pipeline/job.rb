@@ -43,7 +43,7 @@ module JenkinsPipeline
     end
 
     def to_result_class result
-      results = { success: "success", failure: "danger" }
+      results = { success: "success", failure: "failure" }
       result_class = results[result.to_sym]
       result_class.nil? ? result : result_class
     end

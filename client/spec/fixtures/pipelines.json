@@ -19,7 +19,7 @@
         "duration": 27581,
         "ran": true,
         "number": 226,
-        "last_build": "danger"
+        "last_build": "failure"
       }
     ]
   },
@@ -43,7 +43,7 @@
         "duration": 134781,
         "ran": false,
         "number": 400,
-        "last_build": "danger"
+        "last_build": "failure"
       },
       {
         "name": "Beta Deploy",

@@ -58,8 +58,8 @@ describe JenkinsPipeline::Job do
 
   describe "#result_class" do
     context "has result" do
-      let(:another_subject) { described_class.new jenkins_response, name, "danger", ran }
-      it { expect(another_subject.result_class).to eq "danger" }
+      let(:another_subject) { described_class.new jenkins_response, name, "failure", ran }
+      it { expect(another_subject.result_class).to eq "failure" }
     end
 
     context "job is running" do
@@ -73,7 +73,7 @@ describe JenkinsPipeline::Job do
 
     context "job result is failure" do
       before { jenkins_response["lastCompletedBuild"]["result"] = "FAILURE" }
-      it { expect(subject.result_class).to eq "danger" }
+      it { expect(subject.result_class).to eq "failure" }
     end
   end
 end
