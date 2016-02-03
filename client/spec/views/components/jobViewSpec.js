@@ -1,6 +1,7 @@
 'use strict';
 
 var JobView = require('../../../app/views/components/jobView');
+var moment = require('moment');
 
 describe('Job View', function() {
   it('should have job name information', function() {
@@ -42,5 +43,16 @@ describe('Job View', function() {
     expect(JobView.render(jobRanForSeconds)).toContain('12s');
     expect(JobView.render(jobRanForMinutes)).toContain('2min');
     expect(JobView.render(jobRanForMinutesAndSeconds)).toContain('20min20s');
+  });
+
+  it('should display the time when the job ran last time', function() {
+    var yesterdayInMs = moment(moment().subtract(1, 'd')).format('x');
+    var oneHourAgoInMs = moment(moment().subtract(1, 'h')).format('x');
+
+    var jobRanYesterday = { timestamp: yesterdayInMs, ran: true };
+    var jobRanAnHourAgo = { timestamp: oneHourAgoInMs, ran: true };
+
+    expect(JobView.render(jobRanYesterday)).toContain('a day ago');
+    expect(JobView.render(jobRanAnHourAgo)).toContain('an hour ago');
   });
 });
