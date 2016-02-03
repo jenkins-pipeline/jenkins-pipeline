@@ -1,17 +1,17 @@
 module JenkinsPipeline
   class Job
-    attr_reader :name, :ci_name, :duration, :timestamp, :number
-    attr_writer :result
+    attr_reader :name, :result, :ci_name, :duration, :timestamp, :number, :ran
 
-    def initialize job_hash
-      @name = job_hash["name"]
-      @ci_name = job_hash["ci_name"]
-      @result = job_hash["lastCompletedBuild"]["result"].downcase
+    def initialize job_hash, name, result, ran
+      @name = name
+      @ci_name = job_hash["name"]
+      @result = result.empty? ? job_hash["lastCompletedBuild"]["result"].downcase : result
       @last_build = job_hash["lastBuild"]
       @duration = job_hash["lastCompletedBuild"]["duration"]
       @timestamp = job_hash["lastCompletedBuild"]["timestamp"]
       @number = job_hash["lastCompletedBuild"]["number"]
       @revisions = job_hash["lastCompletedBuild"]["changeSet"]["revisions"] || []
+      @ran = ran
     end
 
     def result_class
@@ -23,6 +23,18 @@ module JenkinsPipeline
       @revisions.first["revision"] if @revisions.any?
     end
 
+    def serialize
+      {
+        name: @name,
+        ci_name: @ci_name,
+        timestamp: @timestamp,
+        duration: @duration,
+        ran: @ran,
+        number: @number,
+        last_build: result_class
+      }
+    end
+
     private
 
     def last_build_running?
@@ -32,7 +44,8 @@ module JenkinsPipeline
 
     def to_result_class result
       results = { success: "success", failure: "danger" }
-      results[result.to_sym]
+      result_class = results[result.to_sym]
+      result_class.nil? ? result : result_class
     end
   end
 end
