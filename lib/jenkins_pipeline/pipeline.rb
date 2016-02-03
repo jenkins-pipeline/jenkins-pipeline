@@ -14,5 +14,12 @@ module JenkinsPipeline
       @jobs << job
     end
 
+    def serialize
+      {
+        name: @name,
+        revision: @revision,
+        jobs: @jobs.map(&:serialize)
+      }
+    end
   end
 end
