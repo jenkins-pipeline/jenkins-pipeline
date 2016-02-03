@@ -64,7 +64,7 @@ describe JenkinsPipeline::Job do
 
     context "job is running" do
       before { jenkins_response["lastBuild"] = { "building" => true } }
-      it { expect(subject.result_class).to eq "warning progress-bar-striped active" }
+      it { expect(subject.result_class).to eq "running" }
     end
 
     context "job result is sucess" do

@@ -15,7 +15,7 @@ module JenkinsPipeline
     end
 
     def result_class
-      return "warning progress-bar-striped active" if last_build_running?
+      return "running" if last_build_running?
       to_result_class @result
     end
 
