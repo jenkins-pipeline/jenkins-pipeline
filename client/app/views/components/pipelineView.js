@@ -8,7 +8,8 @@ var renderPipeline = function(pipeline) {
 
   return '<section class="row">' +
            '<header class="pipeline-title row">' +
-             '<h4 class="title col s12">' + pipeline.name + '</h4>' +
+             '<span class="title col">' + pipeline.name + '</span>' +
+             '<span class="revision col">#' + pipeline.revision + '</span>' +
            '</header>' +
            '<section class="row">' +
              jobs.map(jobView.render).join('') +
