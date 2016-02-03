@@ -20,7 +20,7 @@ module JenkinsPipeline
             upstream_in_folder_build = upstream_in_folder["nextBuildNumber"] - 1
 
             if (current_upstream_build != upstream_in_folder_build || has_incomplete == true)
-              result = "danger"
+              result = "failure"
               ran = false
               has_incomplete = true
             end
