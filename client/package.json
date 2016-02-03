@@ -1,26 +1,27 @@
 {
   "name": "jenkins-pipeline-client",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "An attempt to display a set of builds running in Jenkins as a pipeline, a sequence of builds and its states.",
   "scripts": {
     "lint": "esw app/ spec/ --ext .js",
     "_clean": "rm -Rv ../public/* | true",
     "test": "jasmine",
+    "test:ci": "npm run lint && npm run test",
     "prebuild": "npm run lint && npm run test && npm run _clean",
     "build": "brunch build",
     "build:prod": "npm run build -- -p",
     "prestart": "npm run prebuild",
     "start": "brunch watch --server",
-    "watch": "watch 'npm run lint && npm run test' app/ spec/ -d"
+    "watch": "watch 'npm run test:ci' app/ spec/ -d"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viniciusgama/jenkins-pipeline"
+    "url": "git+https://github.com/jenkins-pipeline/jenkins-pipeline"
   },
   "author": "@junior_ales",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/viniciusgama/jenkins-pipeline/issues"
+    "url": "https://github.com/jenkins-pipeline/jenkins-pipeline/issues"
   },
   "devDependencies": {
     "auto-reload-brunch": "^1.8.1",
