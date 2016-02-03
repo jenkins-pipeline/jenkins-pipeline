@@ -6,7 +6,7 @@ module JenkinsPipeline
       @name = name
       @ci_name = job_hash["name"]
       @result = result.empty? ? job_hash["lastCompletedBuild"]["result"].downcase : result
-      @last_build = job_hash["lastBuild"]
+      @status = job_hash["lastBuild"]
       @duration = job_hash["lastCompletedBuild"]["duration"]
       @finished_at = job_hash["lastCompletedBuild"]["timestamp"]
       @number = job_hash["lastCompletedBuild"]["number"]
@@ -28,14 +28,14 @@ module JenkinsPipeline
         name: @name,
         finishedAt: @finished_at,
         duration: @duration,
-        last_build: result_class
+        status: result_class
       }
     end
 
     private
 
     def last_build_running?
-      return @last_build.fetch("building") { false } if @last_build
+      return @status.fetch("building") { false } if @status
       false
     end
 

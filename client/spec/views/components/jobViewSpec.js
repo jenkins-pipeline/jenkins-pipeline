@@ -10,18 +10,18 @@ describe('Job View', function() {
   });
 
   it('should have status property', function() {
-    var job = { last_build: 'theJobStatus' }; // eslint-disable-line
+    var job = { status: 'theJobStatus' };
     expect(JobView.render(job)).toContain('data-status="theJobStatus"');
   });
 
   it('should show progress bar when job is running', function() {
-    var job = { last_build: 'running' }; // eslint-disable-line
+    var job = { status: 'running' };
     expect(JobView.render(job)).toContain('loading progress');
     expect(JobView.render(job)).toContain('indeterminate');
   });
 
   it('should not show progress bar when job is not running', function() {
-    var job = { last_build: 'success' }; // eslint-disable-line
+    var job = { status: 'success' };
     expect(JobView.render(job)).not.toContain('loading progress');
     expect(JobView.render(job)).not.toContain('indeterminate');
   });

@@ -45,14 +45,14 @@ var completedJob = function(job) {
 
 // renderJob :: Job -> String
 var renderJob = function(job) {
-  var isJobRunning = job.last_build === 'running';
+  var isJobRunning = job.status === 'running';
   var jobStatus = isJobRunning ? runningJob : completedJob(job);
 
   return '<article class="job-card col s12 m2 card">' +
            '<div class="title-wrapper card-content truncate">' +
              '<span title="'+ job.name +'" class="title card-title">'+ job.name +'</span>' +
            '</div>' +
-           '<div class="job-status card-action valign-wrapper row" data-status="' + job.last_build + '">' +
+           '<div class="job-status card-action valign-wrapper row" data-status="' + job.status + '">' +
              jobStatus +
            '</div>' +
          '</article>';
