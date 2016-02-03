@@ -26,11 +26,8 @@ module JenkinsPipeline
     def serialize
       {
         name: @name,
-        ci_name: @ci_name,
         finishedAt: @finished_at,
         duration: @duration,
-        ran: @ran,
-        number: @number,
         last_build: result_class
       }
     end
