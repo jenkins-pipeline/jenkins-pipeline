@@ -25,6 +25,6 @@ describe('Job View', function() {
   it('should show the pipeline revision', function() {
     var pipeline = { revision: '444' };
 
-    expect(PipelineView.render(pipeline)).toContain('revision #444');
+    expect(PipelineView.render(pipeline)).toContain('#444');
   });
 });
