@@ -49,8 +49,8 @@ describe('Job View', function() {
     var yesterdayInMs = moment(moment().subtract(1, 'd')).format('x');
     var oneHourAgoInMs = moment(moment().subtract(1, 'h')).format('x');
 
-    var jobRanYesterday = { timestamp: yesterdayInMs };
-    var jobRanAnHourAgo = { timestamp: oneHourAgoInMs };
+    var jobRanYesterday = { finishedAt: yesterdayInMs };
+    var jobRanAnHourAgo = { finishedAt: oneHourAgoInMs };
 
     expect(JobView.render(jobRanYesterday)).toContain('a day ago');
     expect(JobView.render(jobRanAnHourAgo)).toContain('an hour ago');

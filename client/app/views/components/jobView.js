@@ -40,7 +40,7 @@ var jobLastRun = function(lastRunInMs) {
 
 // completedJob :: Job -> String
 var completedJob = function(job) {
-  return jobLastRun(job.timestamp).concat(jobDuration(job.duration));
+  return jobLastRun(job.finishedAt).concat(jobDuration(job.duration));
 };
 
 // renderJob :: Job -> String

@@ -44,8 +44,8 @@ describe JenkinsPipeline::Job do
     it { expect(subject.duration).to eq 3822739 }
   end
 
-  describe "#timestamp" do
-    it { expect(subject.timestamp).to eq 1453828785568 }
+  describe "#finished_at" do
+    it { expect(subject.finished_at).to eq 1453828785568 }
   end
 
   describe "#number" do
