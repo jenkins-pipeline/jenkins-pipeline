@@ -5,7 +5,7 @@
     "jobs": [
       {
         "name": "Unit Test",
-        "ci_name": "LatamApiCustomerPortal-Trunk-UnitTest",
+        "ci_name": "Trunk-UnitTest",
         "timestamp": 1453322525895,
         "duration": 121261,
         "ran": true,
@@ -14,7 +14,7 @@
       },
       {
         "name": "Build & Dev Deploy",
-        "ci_name": "LatamApiCustomerPortal-Trunk-Dev-Deploy",
+        "ci_name": "Trunk-Dev-Deploy",
         "timestamp": 1453322657143,
         "duration": 27581,
         "ran": true,
@@ -29,7 +29,7 @@
     "jobs": [
       {
         "name": "Unit Test",
-        "ci_name": "LatamApiCustomerProfiles-Trunk-UnitTest",
+        "ci_name": "Trunk-UnitTest",
         "timestamp": 1453740175352,
         "duration": 90934,
         "ran": false,
@@ -38,7 +38,7 @@
       },
       {
         "name": "Metrics",
-        "ci_name": "LatamApiCustomerProfiles-Trunk-Metrics-Automation",
+        "ci_name": "Trunk-Metrics-Automation",
         "timestamp": 1453740275023,
         "duration": 134781,
         "ran": false,
@@ -47,7 +47,7 @@
       },
       {
         "name": "Beta Deploy",
-        "ci_name": "LatamApiCustomerProfiles-Trunk-BetaUpdate",
+        "ci_name": "Trunk-BetaUpdate",
         "timestamp": 1453740415037,
         "duration": 36986,
         "ran": true,
@@ -56,7 +56,7 @@
       },
       {
         "name": "Beta Mocks Deploy",
-        "ci_name": "LatamApiCustomerProfiles-Beta1414-Trunk-BetaUpdate",
+        "ci_name": "Beta1414-Trunk-BetaUpdate",
         "timestamp": 1453740460044,
         "duration": 66398,
         "ran": true,
@@ -65,7 +65,7 @@
       },
       {
         "name": "Integration Test",
-        "ci_name": "LatamApiCustomerProfiles-Trunk-IntegrationTest",
+        "ci_name": "Trunk-IntegrationTest",
         "timestamp": 1453740535099,
         "duration": 58146,
         "ran": true,
@@ -80,7 +80,7 @@
     "jobs": [
       {
         "name": "Unit Test",
-        "ci_name": "LatamWebApplicationCustomerPortal-Trunk-UnitTest",
+        "ci_name": "Trunk-UnitTest",
         "timestamp": 1453484799922,
         "duration": 353079,
         "ran": true,
@@ -107,7 +107,7 @@
       },
       {
         "name": "Functional Tests",
-        "ci_name": "LatamWebApplicationCustomerPortal-Trunk-FunctionalTest",
+        "ci_name": "Trunk-FunctionalTest",
         "timestamp": 1453485384967,
         "duration": 68630,
         "ran": true,
