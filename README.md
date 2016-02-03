@@ -20,6 +20,8 @@ Create in the root of the project a `config` directory with your pipeline config
 ### jenkins jobs configuration (folder)
 In case of grouping your jobs in [folders](https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Folders+Plugin) you can speficy the root folder on the configuration
 
+In order to the single pipeline endpoint to work, you will have to add a attribute `url` to your config file. E.g: `url: web-app` will generate an endpoint '/api/piplelines/web-app'
+
 ### .env file
 
 Create an `.env` file in your repository with the following format
