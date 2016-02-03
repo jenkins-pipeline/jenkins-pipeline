@@ -34,4 +34,6 @@ MONITOR_TOKEN=[YOUR API TOKEN IN JENKINS]
 # Running Application
 
 * Install dependencies by running `bundle install`
-* Run the app by typing `rackup config.ru`
+* Run the app by typing `rackup`
+
+It will fireup a web server and can be accessed at [localhost:4567](http://localhost:4567)
