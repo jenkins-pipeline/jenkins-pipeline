@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe JenkinsPipeline::Job do
 
-  let(:result) { "" }
   let(:name) { "Unit Test" }
-  let(:ran) { true }
   let(:jenkins_response) {
     {
       "name" => "Functional",
@@ -29,8 +27,15 @@ describe JenkinsPipeline::Job do
       ]
     }
   }
-
-  let(:subject) { described_class.new jenkins_response, name, result, ran }
+  let(:serialized_job) {
+    {
+      name: "Unit Test",
+      finishedAt: 1453828785568,
+      duration: 3822739,
+      status: "success"
+    }
+  }
+  let(:subject) { described_class.new jenkins_response, name }
 
   describe "#name" do
     it { expect(subject.name).to eq name }
@@ -52,28 +57,23 @@ describe JenkinsPipeline::Job do
     it { expect(subject.number).to eq 4410 }
   end
 
-  describe "#ran" do
-    it { expect(subject.ran).to eq true }
-  end
-
-  describe "#result_class" do
-    context "has result" do
-      let(:another_subject) { described_class.new jenkins_response, name, "failure", ran }
-      it { expect(another_subject.result_class).to eq "failure" }
-    end
-
+  describe "#status" do
     context "job is running" do
       before { jenkins_response["lastBuild"] = { "building" => true } }
-      it { expect(subject.result_class).to eq "running" }
+      it { expect(subject.status).to eq "running" }
     end
 
     context "job result is sucess" do
-      it { expect(subject.result_class).to eq "success" }
+      it { expect(subject.status).to eq "success" }
     end
 
     context "job result is failure" do
       before { jenkins_response["lastCompletedBuild"]["result"] = "FAILURE" }
-      it { expect(subject.result_class).to eq "failure" }
+      it { expect(subject.status).to eq "failure" }
     end
+  end
+
+  describe "#serialize" do
+    it { expect(subject.serialize).to eq serialized_job }
   end
 end
