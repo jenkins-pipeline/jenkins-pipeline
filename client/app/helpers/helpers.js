@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var $ = require('jquery');
+var humanizeDuration = require('humanize-duration');
 
 var prop = _.curry(function(property, object){
   return object[property];
@@ -30,13 +31,30 @@ var $hide = function(selector) {
   };
 };
 
+var formatDuration = humanizeDuration.humanizer({
+  language: 'shortEn',
+  languages: {
+    shortEn: {
+      h: function() { return 'h'; },
+      m: function() { return 'min'; },
+      s: function() { return 's'; },
+      ms: function() { return 'ms'; }
+    }
+  },
+  round: true,
+  spacer: '',
+  delimiter: ''
+});
+
+
 var helpers = {
   prop: prop,
   map: map,
   trace: trace,
   $getJSON: $getJSON,
   $setHTML: $setHTML,
-  $hide: $hide
+  $hide: $hide,
+  formatDuration: formatDuration
 };
 
 module.exports = helpers;
