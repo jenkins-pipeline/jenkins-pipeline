@@ -1,6 +1,6 @@
 {
   "name": "jenkins-pipeline-client",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "An attempt to display a set of builds running in Jenkins as a pipeline, a sequence of builds and its states.",
   "scripts": {
     "lint": "esw app/ spec/ --ext .js",

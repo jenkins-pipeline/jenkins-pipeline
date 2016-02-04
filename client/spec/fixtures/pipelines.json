@@ -1,118 +1,85 @@
 [
   {
     "name": "Digital Service",
-    "revision": 342,
+    "revision": 344,
     "jobs": [
       {
         "name": "Unit Test",
-        "ci_name": "Trunk-UnitTest",
-        "timestamp": 1453322525895,
-        "duration": 121261,
-        "ran": true,
-        "number": 397,
-        "last_build": "success"
+        "finishedAt": 1454526196164,
+        "duration": 114692,
+        "status": "success"
       },
       {
         "name": "Build & Dev Deploy",
-        "ci_name": "Trunk-Dev-Deploy",
-        "timestamp": 1453322657143,
-        "duration": 27581,
-        "ran": true,
-        "number": 226,
-        "last_build": "failure"
+        "finishedAt": 1454526317348,
+        "duration": 28930,
+        "status": "failure"
       }
     ]
   },
   {
     "name": "Transversal Service",
-    "revision": 562,
+    "revision": 610,
     "jobs": [
       {
         "name": "Unit Test",
-        "ci_name": "Trunk-UnitTest",
-        "timestamp": 1453740175352,
-        "duration": 90934,
-        "ran": false,
-        "number": 23,
-        "last_build": "success"
+        "finishedAt": 1454533815945,
+        "duration": 70181,
+        "status": "running"
       },
       {
         "name": "Metrics",
-        "ci_name": "Trunk-Metrics-Automation",
-        "timestamp": 1453740275023,
-        "duration": 134781,
-        "ran": false,
-        "number": 400,
-        "last_build": "failure"
+        "finishedAt": 1454533895952,
+        "duration": 125342,
+        "status": "success"
       },
       {
         "name": "Beta Deploy",
-        "ci_name": "Trunk-BetaUpdate",
-        "timestamp": 1453740415037,
-        "duration": 36986,
-        "ran": true,
-        "number": 497,
-        "last_build": "running"
+        "finishedAt": 1454534134845,
+        "duration": 39115,
+        "status": "success"
       },
       {
         "name": "Beta Mocks Deploy",
-        "ci_name": "Beta1414-Trunk-BetaUpdate",
-        "timestamp": 1453740460044,
-        "duration": 66398,
-        "ran": true,
-        "number": 163,
-        "last_build": "success"
+        "finishedAt": 1454534181112,
+        "duration": 80945,
+        "status": "success"
       },
       {
         "name": "Integration Test",
-        "ci_name": "Trunk-IntegrationTest",
-        "timestamp": 1453740535099,
-        "duration": 58146,
-        "ran": true,
-        "number": 362,
-        "last_build": "success"
+        "finishedAt": 1454534271120,
+        "duration": 31906,
+        "status": "success"
       }
     ]
   },
   {
     "name": "Web Application",
-    "revision": 633,
+    "revision": 646,
     "jobs": [
       {
         "name": "Unit Test",
-        "ci_name": "Trunk-UnitTest",
-        "timestamp": 1453484799922,
-        "duration": 353079,
-        "ran": true,
-        "number": 151,
-        "last_build": "success"
+        "finishedAt": 1454534795901,
+        "duration": 418121,
+        "status": "success"
       },
       {
         "name": "Build",
-        "ci_name": "CP-Builder",
-        "timestamp": 1453485164948,
-        "duration": 151917,
-        "ran": true,
-        "number": 30,
-        "last_build": "success"
+        "finishedAt": 1454535226571,
+        "duration": 153054,
+        "status": "success"
       },
       {
         "name": "Dev Deploy",
-        "ci_name": "CP-Dev-Deploy",
-        "timestamp": 1453485329962,
-        "duration": 48598,
-        "ran": true,
-        "number": 24,
-        "last_build": "success"
+        "finishedAt": 1454535391585,
+        "duration": 51464,
+        "status": "success"
       },
       {
         "name": "Functional Tests",
-        "ci_name": "Trunk-FunctionalTest",
-        "timestamp": 1453485384967,
-        "duration": 68630,
-        "ran": true,
-        "number": 455,
-        "last_build": "success"
+        "finishedAt": 1454536300680,
+        "duration": 69101,
+        "status": "success"
       }
     ]
   }
