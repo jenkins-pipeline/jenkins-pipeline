@@ -12,9 +12,9 @@ module JenkinsPipeline
       pipelines.map(&:serialize).to_json
     end
 
-    get '/api/pipelines/:name' do
+    get '/api/pipelines/:id' do
       content_type :json
-      file = pipeline_files.select { |file| file.fetch("url") == params[:name] }.first
+      file = pipeline_files.select { |file| file.fetch("id") == params[:id] }.first
       halt 404 if file.nil?
       pipeline(file).serialize.to_json
     end

@@ -2,7 +2,7 @@
 name: "Web Application"
 root_url: "http://my-jenkins-host/"
 folder: "MyFolderName"
-url: web-application
+id: web-application
 jobs:
 - name: Unit Test
   ci_name: MyFolderName-UnitTest
