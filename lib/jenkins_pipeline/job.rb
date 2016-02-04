@@ -1,21 +1,15 @@
 module JenkinsPipeline
   class Job
-    attr_reader :name, :status, :ci_name, :duration, :finished_at, :number, :ran
+    attr_reader :name, :status, :ci_name, :duration, :finished_at, :number
 
     def initialize job_hash, name
       @name = name
       @ci_name = job_hash["name"]
-      @result = job_hash["lastCompletedBuild"]["result"].downcase
-      @status = job_hash["lastBuild"]
+      @status = build_status(job_hash["lastBuild"], job_hash["lastCompletedBuild"]["result"].downcase)
       @duration = job_hash["lastCompletedBuild"]["duration"]
       @finished_at = job_hash["lastCompletedBuild"]["timestamp"]
       @number = job_hash["lastCompletedBuild"]["number"]
       @revisions = job_hash["lastCompletedBuild"]["changeSet"]["revisions"] || []
-    end
-
-    def result_class
-      return "running" if last_build_running?
-      to_result_class @result
     end
 
     def revision
@@ -27,21 +21,21 @@ module JenkinsPipeline
         name: @name,
         finishedAt: @finished_at,
         duration: @duration,
-        status: result_class
+        status: @status
       }
     end
 
     private
 
-    def last_build_running?
-      return @status.fetch("building") { false } if @status
-      false
+    def build_status(last_build, result)
+      return "running" if build_running?(last_build)
+      results = { success: "success", failure: "failure" }
+      results[result.to_sym]
     end
 
-    def to_result_class result
-      results = { success: "success", failure: "failure" }
-      result_class = results[result.to_sym]
-      result_class.nil? ? result : result_class
+    def build_running?(build)
+      return build.fetch("building") { false } if build
+      false
     end
   end
 end
