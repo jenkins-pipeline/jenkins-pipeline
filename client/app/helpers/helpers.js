@@ -17,19 +17,40 @@ var trace = function(content) {
   return content;
 };
 
-var $getJSON = _.curry(function(callback, url) {
-  $.getJSON(url, callback);
-});
-
-var $setHTML = _.curry(function(selector, html) {
-  $(selector).html(html);
-});
+var $getJSON = function $getJSON(url) {
+  return new Promise(function $getJSONPromise(resolve, reject) {
+    return $.getJSON({
+      url: url,
+      timeout: 7000
+    }, resolve).fail(reject);
+  });
+};
 
 var $hide = function(selector) {
-  return function () {
-    $(selector).hide();
-  };
+  $(selector).hide();
 };
+
+var $append = function(selector, html) {
+  $(selector).append(html);
+};
+
+var split = _.curry(function(separator, subject) {
+  return subject.split(separator);
+});
+
+var join = _.curry(function(separator, array) {
+  return array.join(separator);
+});
+
+var env = _.flow(
+  prop('search'),
+  _.tail,
+  join(''),
+  split('&'),
+  map(split('=')),
+  _.fromPairs,
+  prop('env')
+);
 
 var formatDuration = humanizeDuration.humanizer({
   language: 'shortEn',
@@ -46,14 +67,19 @@ var formatDuration = humanizeDuration.humanizer({
   delimiter: ''
 });
 
+var $setHTML = _.curry(function(selector, html) {
+  $(selector).html(html);
+});
 
 var helpers = {
   prop: prop,
   map: map,
   trace: trace,
   $getJSON: $getJSON,
-  $setHTML: $setHTML,
   $hide: $hide,
+  $append: $append,
+  $setHTML: $setHTML,
+  env: env,
   formatDuration: formatDuration
 };
 
