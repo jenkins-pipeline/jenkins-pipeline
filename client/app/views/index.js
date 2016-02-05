@@ -4,43 +4,43 @@ var _ = require('lodash');
 var h = require('../helpers/helpers');
 var renderPipeline = require('./components/pipelineView').render;
 
-var appendError = function appendError(err) {
-  h.$append('#content-container', 'Fetching pipelines has a problem. Please try again');
-  h.trace(err);
+var appendError = function(message) {
+  var errorMsg = message ||  'An error occurred loading the page. Please try again.';
+  return function appendError(err) {
+    h.$append('#content-container', errorMsg);
+    h.trace(err);
+  };
 };
 
 var fetchPipelinesAsync = function fetchPipelinesAsync() {
   var pipelineNames = function pipelineNames() {
     return Promise.resolve([
+      'Web Application',
       'Digital Service',
-      'Transversal Service',
-      'Web Application'
+      'Transversal Service'
     ]);
   };
 
-  var $fetchPipeline = function fetchPipeline(pipelineName) {
-    return h.$getJSON('/api/pipelines/' + pipelineName);
-  };
-
-  var appendPipelineView = function appendPipelineView(pipeline) {
+  var renderPipelineView = function renderPipelineView(pipeline) {
     h.$append('#content-container', renderPipeline(pipeline));
-  };
-
-  var renderPipelinesReducer = function renderPipelinesReducer(promises, pipelinePromise) {
-    return promises.then(function() {
-      return pipelinePromise;
-    }).then(appendPipelineView);
   };
 
   var hideLoader = function hideLoader() {
     h.$hide('.pipelines-loading');
   };
 
+  var $fetchPipeline = function(pipelineName) {
+    var errorMsg = 'Fetching Pipeline "' + pipelineName + '" failed. Please refresh the page.';
+
+    return h.$getJSON('/api/pipelines/' + pipelineName).
+             then(renderPipelineView).
+             catch(appendError(errorMsg));
+  };
+
   return function asyncInit() {
     pipelineNames().then(function resolvedPipelineNames(pipelineNames) {
-      return pipelineNames.map($fetchPipeline).
-        reduce(renderPipelinesReducer, Promise.resolve());
-    }).catch(appendError).then(hideLoader);
+      return pipelineNames.map($fetchPipeline);
+    }).catch(appendError()).then(hideLoader);
   };
 };
 
