@@ -67,6 +67,9 @@ var formatDuration = humanizeDuration.humanizer({
   delimiter: ''
 });
 
+var $setHTML = _.curry(function(selector, html) {
+  $(selector).html(html);
+});
 
 var helpers = {
   prop: prop,
@@ -75,6 +78,7 @@ var helpers = {
   $getJSON: $getJSON,
   $hide: $hide,
   $append: $append,
+  $setHTML: $setHTML,
   env: env,
   formatDuration: formatDuration
 };
