@@ -21,9 +21,11 @@ module.exports = function startServer(port, path, callback) {
   });
 
   app.get('/api/pipelines/:id', function(req, res) {
-    res.json(find(pipelines, function(pipeline) {
-      return pipeline.name === req.params.id;
-    }));
+    setTimeout(function() {
+      res.json(find(pipelines, function(pipeline) {
+        return pipeline.name === req.params.id;
+      }));
+    }, 2000);
   });
 
   server.listen(port, callback);

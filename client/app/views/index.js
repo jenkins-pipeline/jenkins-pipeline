@@ -12,9 +12,7 @@ function appendError(message) {
   };
 }
 
-function hideLoader() {
-  h.$hide('.pipelines-loading');
-}
+function hideLoader() { h.$hide('.pipelines-loading'); }
 
 function fetchPipelinesAsync() {
   function pipelineNames() {
@@ -29,18 +27,22 @@ function fetchPipelinesAsync() {
     h.$append('#content-container', renderPipeline(pipeline));
   }
 
-  function $fetchPipeline(pipelineName) {
-    var errorMsg = 'Fetching Pipeline "' + pipelineName + '" failed. Please refresh the page.';
+  function $fetchPipeline(name) {
+    var errorMsg = 'Fetching Pipeline "' + name + '" failed. Please refresh the page.';
 
-    return h.$getJSON('/api/pipelines/' + pipelineName).
+    return h.$getJSON('/api/pipelines/' + name).
              then(renderPipelineView).
              catch(appendError(errorMsg));
   }
 
+  function $fetchPipelines() {
+    return pipelineNames().then(function(names) {
+      return Promise.all(names.map($fetchPipeline));
+    });
+  }
+
   return function asyncInit() {
-    pipelineNames().then(function resolvedPipelineNames(pipelineNames) {
-      return pipelineNames.map($fetchPipeline);
-    }).catch(appendError()).then(hideLoader);
+    $fetchPipelines().catch(appendError()).then(hideLoader);
   };
 }
 
