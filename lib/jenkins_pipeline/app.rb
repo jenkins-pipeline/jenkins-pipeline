@@ -12,6 +12,11 @@ module JenkinsPipeline
       pipelines.map(&:serialize).to_json
     end
 
+    get '/api/pipelines/ids' do
+      content_type :json
+      configuration.pipelines_ids.to_json
+    end
+
     get '/api/pipelines/:id' do
       content_type :json
       file = pipeline_files.select { |file| file.fetch("id") == params[:id] }.first
@@ -20,6 +25,10 @@ module JenkinsPipeline
     end
 
     private
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
 
     def pipelines
       client = JenkinsClient.new
@@ -39,10 +48,5 @@ module JenkinsPipeline
       pipeline_builder.build(jobs_in_folder, file)
     end
 
-    def pipeline_files
-      Dir["config/*.yml"].map do |file|
-        pipeline = YAML.load_file(file)
-      end
-    end
   end
 end
