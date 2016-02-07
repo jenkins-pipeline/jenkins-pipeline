@@ -30,6 +30,10 @@ module JenkinsPipeline
       @configuration ||= Configuration.new
     end
 
+    def pipeline_files
+      configuration.pipelines
+    end
+
     def pipelines
       client = JenkinsClient.new
       pipeline_builder = PipelineBuilder.new
