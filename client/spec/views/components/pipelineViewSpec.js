@@ -1,8 +1,9 @@
 'use strict';
 
 var PipelineView = require('../../../app/views/components/pipelineView');
+var moment = require('moment');
 
-describe('Job View', function() {
+describe('Pipeline View', function() {
   it('should have pipeline title', function() {
     var pipeline = { name: 'pipeline name' };
     expect(PipelineView.render(pipeline)).toContain('pipeline name');
@@ -26,5 +27,14 @@ describe('Job View', function() {
     var pipeline = { revision: '444' };
 
     expect(PipelineView.render(pipeline)).toContain('#444');
+  });
+
+  describe('status', function() {
+    it('should display how much time it took to run', function() {
+      var TWO_MIN = 120000;
+      var pipeline = { jobs: [{ duration: TWO_MIN }, { duration: TWO_MIN }] };
+
+      expect(PipelineView.render(pipeline)).toContain('4min');
+    });
   });
 });

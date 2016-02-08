@@ -1,23 +1,32 @@
 'use strict';
 
-var jobView = require('./jobView');
+var _ = require('lodash');
+var h = require('../../helpers/helpers');
+var JobView = require('./jobView');
+var StatusView = require('./statusView');
 
-// renderPipeline :: Pipeline -> String
+var calcDuration = function(pipeline) {
+  var sumDuration = function(accDuration, item) { return accDuration + item.duration; };
+  var sumJobsDuration = _.flow(h.prop('jobs'), h.reduce(sumDuration, 0));
+
+  return _.assign({}, pipeline, { duration: sumJobsDuration(pipeline) });
+};
+
 var renderPipeline = function(pipeline) {
-  var jobs = pipeline.jobs || [];
 
   return '<section class="row">' +
            '<header class="pipeline-title row">' +
              '<span class="title col">' + pipeline.name + '</span>' +
              '<span class="revision col">#' + pipeline.revision + '</span>' +
+             StatusView.render(pipeline) +
            '</header>' +
            '<section class="row">' +
-             jobs.map(jobView.render).join('') +
+             h.map(JobView.render, pipeline.jobs).join('') +
            '</section>' +
            '<div class="divider"></div>' +
          '</section>';
 };
 
 module.exports = {
-  render: renderPipeline
+  render: _.flow(calcDuration, renderPipeline)
 };

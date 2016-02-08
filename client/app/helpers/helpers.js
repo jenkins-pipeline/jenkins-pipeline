@@ -12,6 +12,10 @@ var map = _.curry(function(fn, coll) {
   return _.map(coll, fn);
 });
 
+var reduce = _.curry(function(fn, initial, coll) {
+  return _.reduce(coll, fn, initial);
+});
+
 var trace = function(content) {
   console.log(JSON.stringify(content));
   return content;
@@ -74,6 +78,7 @@ var $setHTML = _.curry(function(selector, html) {
 var helpers = {
   prop: prop,
   map: map,
+  reduce: reduce,
   trace: trace,
   $getJSON: $getJSON,
   $hide: $hide,
