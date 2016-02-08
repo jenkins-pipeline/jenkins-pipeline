@@ -15,13 +15,13 @@ describe('Job View', function() {
 
   it('should show progress bar when job is running', function() {
     var job = { status: 'running' };
-    expect(JobView.render(job)).toContain('loading progress');
+    expect(JobView.render(job)).toContain('loading');
     expect(JobView.render(job)).toContain('indeterminate');
   });
 
   it('should not show progress bar when job is not running', function() {
     var job = { status: 'success' };
-    expect(JobView.render(job)).not.toContain('loading progress');
+    expect(JobView.render(job)).not.toContain('loading');
     expect(JobView.render(job)).not.toContain('indeterminate');
   });
 

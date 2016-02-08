@@ -8,6 +8,12 @@
     color: white;
     min-height: 40px;
     font-size: .75em;
+
+    & > .duration, & > .lastrun, & > .loading { @extend .col; }
+
+    & > .duration { @extend .s5; }
+    & > .lastrun { @extend .s7; }
+    & > .loading { @extend .s12; }
   }
 
   & > .title-wrapper {

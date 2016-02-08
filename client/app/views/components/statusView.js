@@ -5,7 +5,7 @@ var moment = require('moment');
 var formatDuration = require('../../helpers/helpers').formatDuration;
 
 var wrapDurationMarkup = function(duration) {
-  return '<div class="duration col s5" title="It took ' + duration + ' running last time">' +
+  return '<div class="duration" title="It took ' + duration + ' running last time">' +
            '<i class="icon fa fa-clock-o"></i>' + duration +
          '</div>';
 };
@@ -13,7 +13,7 @@ var wrapDurationMarkup = function(duration) {
 var duration = _.flow(formatDuration, wrapDurationMarkup);
 
 var wrapLastRunMarkup = function(relativeTime) {
-  return '<div class="lastrun col s7 truncate" title="Last time it ran was ' + relativeTime + '">' +
+  return '<div class="lastrun" title="Last time it ran was ' + relativeTime + '">' +
            '<i class="icon fa fa-flag-checkered"></i>' + relativeTime +
          '</div>';
 };
@@ -28,12 +28,12 @@ var itemInfo = function(item) {
   return lastRun(item.finishedAt).concat(duration(item.duration));
 };
 
-var runningItem = '<div class="loading progress col s12"><div class="indeterminate"></div></div>';
+var runningItem = '<div class="loading"><div class="indeterminate"></div></div>';
 
 var renderStatus = function(item) {
   var status = item.status === 'running' ? runningItem : itemInfo(item);
 
-  return '<div class="status-box card-action valign-wrapper row" data-status="' + item.status + '">' +
+  return '<div class="status-box" data-status="' + item.status + '">' +
            status +
          '</div>';
 };

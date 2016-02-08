@@ -2,6 +2,7 @@
   background-color: $baseColor;
 
   & > .loading {
+    @extend .progress;
     background-color: lighten($baseColor, 20%);
 
     .indeterminate { background-color: lighten($baseColor, 40%); }
@@ -9,6 +10,10 @@
 }
 
 .status-box {
+  @extend .card-action;
+  @extend .valign-wrapper;
+  @extend .row;
+
   &[data-status=success] { @include progress-bar(#2e7d32); }
   &[data-status=failure] { @include progress-bar(#c62828); }
   &[data-status=running] { @include progress-bar(#546e7a); }
@@ -17,6 +22,7 @@
   & > .lastrun { text-align: left; }
 
   & > .duration, & > .lastrun {
+    @extend .truncate;
     padding: 0 !important;
 
     & > .icon { margin-right: 5px; }

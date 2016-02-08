@@ -20,9 +20,9 @@ var calcLastRun = function(pipeline) {
 
 var renderPipeline = function(pipeline) {
   return '<section class="row">' +
-           '<header class="pipeline-title row">' +
-             '<span class="title col">' + pipeline.name + '</span>' +
-             '<span class="revision col">#' + pipeline.revision + '</span>' +
+           '<header class="pipeline-title">' +
+             '<span class="title">' + pipeline.name + '</span>' +
+             '<span class="revision">#' + pipeline.revision + '</span>' +
              StatusView.render(pipeline) +
            '</header>' +
            '<section class="row">' +

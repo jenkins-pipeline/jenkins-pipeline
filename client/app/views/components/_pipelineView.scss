@@ -1,0 +1,28 @@
+.container .row:first-of-type .pipeline-title {
+  margin-top: 20px;
+}
+
+.pipeline-title {
+  @extend .row;
+
+  margin-bottom: 0;
+
+  & > .title, & > .revision {
+    @extend .col
+  }
+
+  & > .revision {
+    color: #9e9e9e;
+    margin: .5em 0;
+  }
+
+  & > .title { font-size: 1.5em; }
+
+  & > .status-box {
+    font-size: .875em;
+    margin-bottom: inherit;
+
+    .lastrun { margin: .7em; }
+    .duration { margin: .7em; }
+  }
+}
