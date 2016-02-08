@@ -12,8 +12,13 @@ var calcDuration = function(pipeline) {
   return _.assign({}, pipeline, { duration: sumJobsDuration(pipeline) });
 };
 
-var renderPipeline = function(pipeline) {
+var calcLastRun = function(pipeline) {
+  var lastRun = _.flow(h.prop('jobs'), _.last, h.prop('finishedAt'));
 
+  return _.assign({}, pipeline, { finishedAt: lastRun(pipeline) });
+};
+
+var renderPipeline = function(pipeline) {
   return '<section class="row">' +
            '<header class="pipeline-title row">' +
              '<span class="title col">' + pipeline.name + '</span>' +
@@ -28,5 +33,5 @@ var renderPipeline = function(pipeline) {
 };
 
 module.exports = {
-  render: _.flow(calcDuration, renderPipeline)
+  render: _.flow(calcDuration, calcLastRun, renderPipeline)
 };

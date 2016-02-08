@@ -5,7 +5,7 @@ var $ = require('jquery');
 var humanizeDuration = require('humanize-duration');
 
 var prop = _.curry(function(property, object){
-  return object[property];
+  return (object || {})[property];
 });
 
 var map = _.curry(function(fn, coll) {

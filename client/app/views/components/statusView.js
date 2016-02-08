@@ -13,7 +13,7 @@ var wrapDurationMarkup = function(duration) {
 var duration = _.flow(formatDuration, wrapDurationMarkup);
 
 var wrapLastRunMarkup = function(relativeTime) {
-  return '<div class="lastrun col s7 truncate" title="Last time the it ran was ' + relativeTime + '">' +
+  return '<div class="lastrun col s7 truncate" title="Last time it ran was ' + relativeTime + '">' +
            '<i class="icon fa fa-flag-checkered"></i>' + relativeTime +
          '</div>';
 };

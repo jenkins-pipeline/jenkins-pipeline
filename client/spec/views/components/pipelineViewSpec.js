@@ -36,5 +36,15 @@ describe('Pipeline View', function() {
 
       expect(PipelineView.render(pipeline)).toContain('4min');
     });
+
+    it('should display the time it ran for the last time', function() {
+      var yesterdayInMs = moment(moment().subtract(1, 'd')).format('x');
+      var now = moment().milliseconds();
+
+      var pipeline = { jobs: [{ finishedAt: now }, { finishedAt: yesterdayInMs }] };
+
+      expect(PipelineView.render(pipeline)).toContain('a day ago');
+      expect(PipelineView.render(pipeline)).not.toContain('Invalid date');
+    });
   });
 });
