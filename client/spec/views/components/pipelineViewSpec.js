@@ -1,8 +1,9 @@
 'use strict';
 
 var PipelineView = require('../../../app/views/components/pipelineView');
+var moment = require('moment');
 
-describe('Job View', function() {
+describe('Pipeline View', function() {
   it('should have pipeline title', function() {
     var pipeline = { name: 'pipeline name' };
     expect(PipelineView.render(pipeline)).toContain('pipeline name');
@@ -26,5 +27,24 @@ describe('Job View', function() {
     var pipeline = { revision: '444' };
 
     expect(PipelineView.render(pipeline)).toContain('#444');
+  });
+
+  describe('status', function() {
+    it('should display how much time it took to run', function() {
+      var TWO_MIN = 120000;
+      var pipeline = { jobs: [{ duration: TWO_MIN }, { duration: TWO_MIN }] };
+
+      expect(PipelineView.render(pipeline)).toContain('4min');
+    });
+
+    it('should display the time it ran for the last time', function() {
+      var yesterdayInMs = moment(moment().subtract(1, 'd')).format('x');
+      var now = moment().milliseconds();
+
+      var pipeline = { jobs: [{ finishedAt: now }, { finishedAt: yesterdayInMs }] };
+
+      expect(PipelineView.render(pipeline)).toContain('a day ago');
+      expect(PipelineView.render(pipeline)).not.toContain('Invalid date');
+    });
   });
 });

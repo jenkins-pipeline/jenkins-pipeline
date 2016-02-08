@@ -23,7 +23,7 @@ function fetchPipelinesAsync() {
     ]);
   }
 
-  function renderPipelineView(pipeline) {
+  function renderPipelines(pipeline) {
     h.$append('#content-container', renderPipeline(pipeline));
   }
 
@@ -31,7 +31,7 @@ function fetchPipelinesAsync() {
     var errorMsg = 'Fetching Pipeline "' + name + '" failed. Please refresh the page.';
 
     return h.$getJSON('/api/pipelines/' + name).
-             then(renderPipelineView).
+             then(renderPipelines).
              catch(appendError(errorMsg));
   }
 
