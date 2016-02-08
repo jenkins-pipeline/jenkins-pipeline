@@ -1,0 +1,25 @@
+@mixin progress-bar($baseColor) {
+  background-color: $baseColor;
+
+  & > .loading {
+    background-color: lighten($baseColor, 20%);
+
+    .indeterminate { background-color: lighten($baseColor, 40%); }
+  }
+}
+
+.status-box {
+  &[data-status=success] { @include progress-bar(#2e7d32); }
+  &[data-status=failure] { @include progress-bar(#c62828); }
+  &[data-status=running] { @include progress-bar(#546e7a); }
+
+  & > .duration { text-align: right; }
+  & > .lastrun { text-align: left; }
+
+  & > .duration, & > .lastrun {
+    padding: 0 !important;
+
+    & > .icon { margin-right: 5px; }
+  }
+}
+
