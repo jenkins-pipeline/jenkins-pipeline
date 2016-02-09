@@ -8,24 +8,32 @@ describe JenkinsPipeline::PipelineBuilder do
       "jobs" => [
         {
           "name" => "Builder",
-          "lastBuild" => { "building" => false },
+          "lastBuild" => {
+            "actions" => [
+              {
+                "causes" => [
+                  {
+                    "upstreamBuild" => 182,
+                    "upstreamProject" => "AnyFolderIfExists/UnitTest"
+                  }
+                ]
+              }
+            ],
+            "building" => false
+          },
           "lastCompletedBuild" => {
             "duration" => 142488,
             "number" => 48,
             "result" => "SUCCESS",
             "timestamp" => 1454697115174,
             "changeSet" => {}
-          },
-          "upstreamProjects" => [
-            {
-              "name" => "UnitTest",
-              "nextBuildNumber" => 183
-            }
-          ]
+          }
         },
         {
           "name" => "UnitTest",
-          "lastBuild" => { "building" => false },
+          "lastBuild" => {
+            "building" => false
+          },
           "lastCompletedBuild" => {
             "duration" => 257872,
             "number" => 182,

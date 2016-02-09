@@ -6,9 +6,8 @@ describe JenkinsPipeline::Job do
   let(:jenkins_response) {
     {
       "name" => "Functional",
-      "last_build" => {
-       "building" => false,
-       "number" => 4411
+      "lastBuild" => {
+        "building" => false
       },
       "lastCompletedBuild" => {
         "duration" => 3822739,
@@ -18,13 +17,7 @@ describe JenkinsPipeline::Job do
         "changeSet" => {
           "revisions" => []
         }
-      },
-      "upstreamProjects" => [
-        {
-          "name" => "Unit",
-          "nextBuildNumber" => 170
-        }
-      ]
+      }
     }
   }
   let(:serialized_job) {
@@ -35,7 +28,7 @@ describe JenkinsPipeline::Job do
       status: "success"
     }
   }
-  let(:subject) { described_class.new jenkins_response, name }
+  let(:subject) { described_class.new(jenkins_response, name, "") }
 
   describe "#name" do
     it { expect(subject.name).to eq name }
@@ -70,6 +63,21 @@ describe JenkinsPipeline::Job do
     context "job result is failure" do
       before { jenkins_response["lastCompletedBuild"]["result"] = "FAILURE" }
       it { expect(subject.status).to eq "failure" }
+    end
+
+    describe "upstream build number is running" do
+      let(:subject) { described_class.new(jenkins_response, name, "running") }
+      it { expect(subject.status).to eq "undefined" }
+    end
+
+    describe "upstream build number is undefined" do
+      let(:subject) { described_class.new(jenkins_response, name, "undefined") }
+      it { expect(subject.status).to eq "undefined" }
+    end
+
+    describe "upstream build number is failure" do
+      let(:subject) { described_class.new(jenkins_response, name, "failure") }
+      it { expect(subject.status).to eq "undefined" }
     end
   end
 
