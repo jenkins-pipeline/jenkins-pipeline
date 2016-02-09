@@ -31,7 +31,7 @@ module JenkinsPipeline
     private
 
     def build_status
-      return "undefined" if ["running", "undefined", "failure"].include?(@upstream_status)
+      return "undefined" if %w(running undefined failure).include?(@upstream_status)
       return "running" if build_running?(@last_build)
       results = { success: "success", failure: "failure" }
       results[@result.to_sym]

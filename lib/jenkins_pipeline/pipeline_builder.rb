@@ -5,7 +5,7 @@ module JenkinsPipeline
 
       config["jobs"].each_with_index do |job_config, index|
         matching_job = find_job(job_config["ci_name"], jenkins_jobs["jobs"])
-        upstream_status = upstream_status(pipeline_instance.jobs, job_config, matching_job)
+        upstream_status = upstream_status(pipeline_instance.jobs, job_config)
         job_instance = Job.new(matching_job, job_config["name"], upstream_status)
         pipeline_instance.add_job job_instance, first?(index)
       end
