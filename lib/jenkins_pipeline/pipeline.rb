@@ -1,7 +1,7 @@
 module JenkinsPipeline
   class Pipeline
 
-    attr_reader :revision, :name
+    attr_reader :revision, :name, :jobs
 
     def initialize name
       @name = name
