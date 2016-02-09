@@ -1,7 +1,5 @@
 module JenkinsPipeline
   class Configuration
-
-
     def pipelines
       @pipelines ||= files
     end
@@ -17,6 +15,5 @@ module JenkinsPipeline
         YAML.load_file(file)
       end
     end
-
   end
 end
