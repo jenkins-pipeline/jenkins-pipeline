@@ -19,9 +19,9 @@ module JenkinsPipeline
 
     get '/api/pipelines/:id' do
       content_type :json
-      file = pipeline_files.select { |file| file.fetch("id") == params[:id] }.first
-      halt 404 if file.nil?
-      pipeline(file).serialize.to_json
+      found_file = pipeline_files.find { |file| file.fetch("id") == params[:id] }
+      halt 404 if found_file.nil?
+      pipeline(found_file).serialize.to_json
     end
 
     private
@@ -35,8 +35,8 @@ module JenkinsPipeline
     end
 
     def pipeline file
-      jobs_in_folder = jenkins_client.all_jobs_from(file)
-      pipeline_builder.build(jobs_in_folder, file)
+      jenkins_jobs = jenkins_client.all_jobs_from(file)
+      pipeline_builder.build(file, jenkins_jobs)
     end
 
     def configuration
