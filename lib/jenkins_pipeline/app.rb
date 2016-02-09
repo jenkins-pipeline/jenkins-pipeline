@@ -26,31 +26,29 @@ module JenkinsPipeline
 
     private
 
-    def configuration
-      @configuration ||= Configuration.new
-    end
-
     def pipeline_files
       configuration.pipelines
     end
 
     def pipelines
-      client = JenkinsClient.new
-      pipeline_builder = PipelineBuilder.new
-
-      pipeline_files.map do |pipeline|
-        jobs_in_folder = client.all_jobs_from(pipeline)
-        pipeline_builder.build(jobs_in_folder, pipeline)
-      end
+      pipeline_files.map(&:pipeline)
     end
 
     def pipeline file
-      client = JenkinsClient.new
-      pipeline_builder = PipelineBuilder.new
-
-      jobs_in_folder = client.all_jobs_from(file)
+      jobs_in_folder = jenkins_client.all_jobs_from(file)
       pipeline_builder.build(jobs_in_folder, file)
     end
 
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def jenkins_client
+      @jenkins_client ||= JenkinsClient.new
+    end
+
+    def pipeline_builder
+      @pipeline_builder ||= PipelineBuilder.new
+    end
   end
 end
