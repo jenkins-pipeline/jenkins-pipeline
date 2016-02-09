@@ -19,7 +19,7 @@ module JenkinsPipeline
       jobs.find {|job| job["name"] == name }
     end
 
-    def upstream_status(jobs, job_config, matching_job)
+    def upstream_status(jobs, job_config)
       upstream_job = jobs.find {|j| j.ci_name == job_config["upstream"] }
       return "" if upstream_job.nil?
       upstream_job.status
