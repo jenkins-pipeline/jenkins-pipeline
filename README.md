@@ -37,3 +37,7 @@ MONITOR_TOKEN=[YOUR API TOKEN IN JENKINS]
 * Run the app by typing `rackup`
 
 It will fireup a web server and can be accessed at [localhost:4567](http://localhost:4567)
+
+## Docker  
+
+Running Jenkins Pipeline on Docker is simple as `docker run -p 4567:4567 -e MONITOR_USERNAME=<your-username> -e MONITOR_TOKEN=<your-token> -v <your-path-to-config>/jenkins-pipeline/config jenkinspipeline/jenkins-pipeline`
