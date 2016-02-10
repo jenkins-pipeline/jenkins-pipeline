@@ -14,6 +14,12 @@
         "finishedAt": 1454526317348,
         "duration": 28930,
         "status": "failure"
+      },
+      {
+        "name": "Integration",
+        "finishedAt": 1454526319349,
+        "duration": 29990,
+        "status": "undefined"
       }
     ]
   },
