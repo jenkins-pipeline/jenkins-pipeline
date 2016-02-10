@@ -2,10 +2,13 @@ module JenkinsPipeline
   class Job
     attr_reader :name, :status, :ci_name, :duration, :finished_at, :number
 
-    def initialize job_hash, name
+    def initialize(job_hash, name, upstream_status)
       @name = name
       @ci_name = job_hash["name"]
-      @status = build_status(job_hash["lastBuild"], job_hash["lastCompletedBuild"]["result"].downcase)
+      @last_build = job_hash["lastBuild"]
+      @result = job_hash["lastCompletedBuild"]["result"].downcase
+      @upstream_status = upstream_status
+      @status = build_status
       @duration = job_hash["lastCompletedBuild"]["duration"]
       @finished_at = job_hash["lastCompletedBuild"]["timestamp"]
       @number = job_hash["lastCompletedBuild"]["number"]
@@ -27,10 +30,10 @@ module JenkinsPipeline
 
     private
 
-    def build_status(last_build, result)
-      return "running" if build_running?(last_build)
-      results = { success: "success", failure: "failure" }
-      results[result.to_sym]
+    def build_status
+      return "unknown" if %w(running unknown failure).include?(@upstream_status)
+      return "running" if build_running?(@last_build)
+      @result
     end
 
     def build_running?(build)

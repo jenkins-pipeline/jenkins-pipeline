@@ -25,7 +25,7 @@ var $getJSON = function $getJSON(url) {
   return new Promise(function $getJSONPromise(resolve, reject) {
     return $.getJSON({
       url: url,
-      timeout: 20000
+      timeout: 40000
     }, resolve).fail(reject);
   });
 };
