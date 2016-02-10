@@ -67,17 +67,17 @@ describe JenkinsPipeline::Job do
 
     describe "upstream build number is running" do
       let(:subject) { described_class.new(jenkins_response, name, "running") }
-      it { expect(subject.status).to eq "undefined" }
+      it { expect(subject.status).to eq "unknown" }
     end
 
-    describe "upstream build number is undefined" do
-      let(:subject) { described_class.new(jenkins_response, name, "undefined") }
-      it { expect(subject.status).to eq "undefined" }
+    describe "upstream build number is unknown" do
+      let(:subject) { described_class.new(jenkins_response, name, "unknown") }
+      it { expect(subject.status).to eq "unknown" }
     end
 
     describe "upstream build number is failure" do
       let(:subject) { described_class.new(jenkins_response, name, "failure") }
-      it { expect(subject.status).to eq "undefined" }
+      it { expect(subject.status).to eq "unknown" }
     end
   end
 

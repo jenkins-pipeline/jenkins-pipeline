@@ -19,7 +19,7 @@
         "name": "Integration",
         "finishedAt": 1454526319349,
         "duration": 29990,
-        "status": "undefined"
+        "status": "unknown"
       }
     ]
   },
@@ -31,7 +31,7 @@
         "name": "Unit Test",
         "finishedAt": 1454533815945,
         "duration": 70181,
-        "status": "running"
+        "status": "success"
       },
       {
         "name": "Metrics",
@@ -43,19 +43,19 @@
         "name": "Beta Deploy",
         "finishedAt": 1454534134845,
         "duration": 39115,
-        "status": "success"
+        "status": "running"
       },
       {
         "name": "Beta Mocks Deploy",
         "finishedAt": 1454534181112,
         "duration": 80945,
-        "status": "success"
+        "status": "unknown"
       },
       {
         "name": "Integration Test",
         "finishedAt": 1454534271120,
         "duration": 31906,
-        "status": "success"
+        "status": "unknown"
       }
     ]
   },
