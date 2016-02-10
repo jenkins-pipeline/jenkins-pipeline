@@ -31,7 +31,7 @@ module JenkinsPipeline
     private
 
     def build_status
-      return "undefined" if %w(running undefined failure).include?(@upstream_status)
+      return "unknown" if %w(running unknown failure).include?(@upstream_status)
       return "running" if build_running?(@last_build)
       @result
     end
