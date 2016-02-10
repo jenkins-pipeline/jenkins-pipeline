@@ -6,3 +6,4 @@ config/
 .byebug_history
 node_modules/
 .ruby-version
+public/
