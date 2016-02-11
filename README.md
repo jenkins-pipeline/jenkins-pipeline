@@ -48,4 +48,4 @@ Running Jenkins Pipeline on Docker is simple as `docker run -p 4567:4567 -e MONI
 
 ### Building  
 
-To build Jenkins Pipeline image locally on your docker host you can simple run `docker build -rm -t jenkins-pipeline .`
+To build Jenkins Pipeline image locally on your docker host you can simple run `docker build --rm -t jenkins-pipeline .`
