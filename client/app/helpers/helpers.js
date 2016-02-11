@@ -34,6 +34,14 @@ var $hide = function(selector) {
   $(selector).hide();
 };
 
+var $show = function(selector) {
+  $(selector).show();
+};
+
+var $clear = function(selector) {
+  $(selector).empty();
+};
+
 var $append = function(selector, html) {
   $(selector).append(html);
 };
@@ -82,6 +90,8 @@ var helpers = {
   trace: trace,
   $getJSON: $getJSON,
   $hide: $hide,
+  $show: $show,
+  $clear: $clear,
   $append: $append,
   $setHTML: $setHTML,
   env: env,
