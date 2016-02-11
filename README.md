@@ -1,6 +1,6 @@
 # Jenkins Pipeline
 
-[![Join the chat at https://gitter.im/viniciusgama/jenkins-pipeline](https://badges.gitter.im/viniciusgama/jenkins-pipeline.svg)](https://gitter.im/viniciusgama/jenkins-pipeline?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://snap-ci.com/jenkins-pipeline/jenkins-pipeline/branch/master/build_image)](https://snap-ci.com/jenkins-pipeline/jenkins-pipeline/branch/master)
+[![Join the chat at https://gitter.im/viniciusgama/jenkins-pipeline](https://badges.gitter.im/viniciusgama/jenkins-pipeline.svg)](https://gitter.im/viniciusgama/jenkins-pipeline?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://orca.snap-ci.com/jenkins-pipeline/jenkins-pipeline/branch/master/build_image)](https://orca.snap-ci.com/jenkins-pipeline/jenkins-pipeline/branch/master)
 
 An attempt to display a set of builds running in Jenkins as a pipeline, a sequence of builds and its states.
 
