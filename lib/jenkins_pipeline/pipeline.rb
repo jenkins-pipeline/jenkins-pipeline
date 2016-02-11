@@ -1,9 +1,10 @@
 module JenkinsPipeline
   class Pipeline
 
-    attr_reader :revision, :name, :jobs
+    attr_reader :revision, :id, :name, :jobs
 
-    def initialize name
+    def initialize(id, name)
+      @id = id
       @name = name
       @revision = 0
       @jobs = []
@@ -16,6 +17,7 @@ module JenkinsPipeline
 
     def serialize
       {
+        id: @id,
         name: @name,
         revision: @revision,
         jobs: @jobs.map(&:serialize)
