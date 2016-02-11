@@ -13,25 +13,24 @@ function appendError(message) {
 
 function hideLoader() { h.$hide('.pipelines-loading'); }
 
-function $fetchPipelineNames() {
-  return h.$getJSON('/api/pipelines/ids').catch(appendError());
+function $fetchPipelineIds() {
+  var errorMsg = 'An error ocurred fetching pipeline ids. Please try again.';
+  return h.$getJSON('/api/pipelines/ids').catch(appendError(errorMsg));
 }
 
 function renderPipelines(pipeline) {
   h.$append('#content-container', renderPipeline(pipeline));
 }
 
-function $fetchPipeline(name) {
-  var errorMsg = 'Fetching Pipeline "' + name + '" failed. Please refresh the page.';
+function $fetchPipeline(id) {
+  var errorMsg = 'Fetching Pipeline "'+id+'" failed. Please refresh the page.';
 
-  return h.$getJSON('/api/pipelines/' + name).
-    then(renderPipelines).
-    catch(appendError(errorMsg));
+  return h.$getJSON('/api/pipelines/'+id).then(renderPipelines).catch(appendError(errorMsg));
 }
 
 function $fetchPipelines() {
-  return $fetchPipelineNames().then(function(names) {
-    return Promise.all(h.map($fetchPipeline, names));
+  return $fetchPipelineIds().then(function(ids) {
+    return Promise.all(h.map($fetchPipeline, ids));
   });
 }
 
