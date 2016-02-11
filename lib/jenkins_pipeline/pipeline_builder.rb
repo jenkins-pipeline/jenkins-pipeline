@@ -1,7 +1,7 @@
 module JenkinsPipeline
   class PipelineBuilder
     def build(config, jenkins_jobs)
-      pipeline_instance = Pipeline.new config["name"]
+      pipeline_instance = Pipeline.new(config["id"], config["name"])
 
       config["jobs"].each_with_index do |job_config, index|
         matching_job = find_job(job_config["ci_name"], jenkins_jobs["jobs"])
