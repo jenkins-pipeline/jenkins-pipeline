@@ -7,6 +7,7 @@ var logger     = require('morgan');
 var Path       = require('path');
 var find       = require('lodash').find;
 var pipelines  = require('./spec/fixtures/pipelines');
+var PIPELINE_IDS = ['Web Application', 'Digital Service', 'Transversal Service'];
 
 module.exports = function startServer(port, path, callback) {
   var app = express();
@@ -18,6 +19,10 @@ module.exports = function startServer(port, path, callback) {
 
   app.get('/api/pipelines', function(req, res) {
     res.json(pipelines);
+  });
+
+  app.get('/api/pipelines/ids', function(req, res) {
+    res.json(PIPELINE_IDS);
   });
 
   app.get('/api/pipelines/:id', function(req, res) {
