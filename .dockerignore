@@ -1,9 +1,9 @@
-config/
+config/*
 .env
 *.swp
 *.log
 .DS_Store
 .byebug_history
-node_modules/
+*/node_modules/*
 .ruby-version
-public/
+public/*
