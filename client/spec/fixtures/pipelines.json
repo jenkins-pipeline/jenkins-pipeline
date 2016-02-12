@@ -79,13 +79,13 @@
         "name": "Dev Deploy",
         "finishedAt": 1454535391585,
         "duration": 51464,
-        "status": "success"
+        "status": "aborted"
       },
       {
         "name": "Functional Tests",
         "finishedAt": 1454536300680,
         "duration": 69101,
-        "status": "success"
+        "status": "unknown"
       }
     ]
   }

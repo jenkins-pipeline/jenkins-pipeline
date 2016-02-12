@@ -18,11 +18,11 @@ var wrapLastRunMarkup = function(relativeTime) {
          '</div>';
 };
 
-var fromNow = _.curry(function(moment, milliseconds) {
+var fromNow = function(milliseconds) {
   return moment(milliseconds).fromNow();
-});
+};
 
-var lastRun = _.flow(Number, fromNow(moment), wrapLastRunMarkup);
+var lastRun = _.flow(Number, fromNow, wrapLastRunMarkup);
 
 var itemInfo = function(item) {
   return lastRun(item.finishedAt).concat(duration(item.duration));

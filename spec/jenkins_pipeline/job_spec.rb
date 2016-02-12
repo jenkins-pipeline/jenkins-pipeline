@@ -79,6 +79,11 @@ describe JenkinsPipeline::Job do
       let(:subject) { described_class.new(jenkins_response, name, "failure") }
       it { expect(subject.status).to eq "unknown" }
     end
+
+    describe "upstream build number is aborted" do
+      let(:subject) { described_class.new(jenkins_response, name, "aborted") }
+      it { expect(subject.status).to eq "unknown" }
+    end
   end
 
   describe "#serialize" do

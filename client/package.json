@@ -1,13 +1,13 @@
 {
   "name": "jenkins-pipeline-client",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "An attempt to display a set of builds running in Jenkins as a pipeline, a sequence of builds and its states.",
   "scripts": {
     "lint": "esw app/ spec/ --ext .js",
     "_clean": "rm -Rv ../public/* | true",
     "test": "jasmine",
     "test:ci": "npm run lint && npm run test",
-    "prebuild": "npm run lint && npm run test && npm run _clean",
+    "prebuild": "npm run test:ci && npm run _clean",
     "build": "brunch build",
     "build:prod": "npm run build -- -p",
     "prestart": "npm run prebuild",
