@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var h = require('../helpers/helpers');
 var renderPipeline = require('./components/pipelineView').render;
+var renderError = require('./components/errorView').render;
 var pollingSubscribe = require('../helpers/polling').subscribe;
 
 var TWO_MINUTES = 120000;
@@ -15,7 +16,7 @@ function $appendError(message) {
   var errorMsg = message || 'An error occurred loading the page. Please try again.';
 
   return function _appendError(err) {
-    h.$append('#content-container', errorMsg);
+    h.$append('#content-container', renderError(errorMsg));
     console.log(err);
   };
 }
@@ -32,7 +33,7 @@ function $appendPipeline(pipeline) {
 function $fetchPipeline(id) {
   var errorMsg = 'Fetching Pipeline "'+id+'" failed. Please refresh the page.';
 
-  return h.$getJSON('/api/pipelines/'+id).
+  return h.$getJSON('/api/pipelines/' + id).
            then($appendPipeline).
            catch($appendError(errorMsg));
 }
