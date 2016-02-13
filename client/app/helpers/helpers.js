@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var $ = require('jquery');
 var humanizeDuration = require('humanize-duration');
 
 var prop = _.curry(function(property, object){
@@ -15,15 +14,6 @@ var map = _.curry(function(fn, coll) {
 var reduce = _.curry(function(fn, initial, coll) {
   return _.reduce(coll, fn, initial);
 });
-
-var $getJSON = function $getJSON(url) {
-  return new Promise(function $getJSONPromise(resolve, reject) {
-    return $.getJSON({
-      url: url,
-      timeout: 40000
-    }, resolve).fail(reject);
-  });
-};
 
 var formatDuration = humanizeDuration.humanizer({
   language: 'shortEn',
@@ -44,7 +34,6 @@ var helpers = {
   prop: prop,
   map: map,
   reduce: reduce,
-  $getJSON: $getJSON,
   formatDuration: formatDuration
 };
 
