@@ -14,10 +14,11 @@ var reduce = _.curry(function(fn, initial, coll) {
   return _.reduce(coll, fn, initial);
 });
 
-var helpers = {
+module.exports = {
   prop: prop,
   map: map,
-  reduce: reduce
+  reduce: reduce,
+  pipe: _.flow,
+  assign: _.assign,
+  last: _.last
 };
-
-module.exports = helpers;
