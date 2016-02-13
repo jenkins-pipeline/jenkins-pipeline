@@ -1,8 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var moment = require('moment');
-var formatDuration = require('../../helpers/helpers').formatDuration;
+var duration = require('../../helpers/duration');
 
 var wrapDurationMarkup = function(duration) {
   return '<div class="duration" title="It took ' + duration + ' running last time">' +
@@ -10,7 +9,7 @@ var wrapDurationMarkup = function(duration) {
          '</div>';
 };
 
-var duration = _.flow(formatDuration, wrapDurationMarkup);
+var itemDuration = _.flow(duration.format, wrapDurationMarkup);
 
 var wrapLastRunMarkup = function(relativeTime) {
   return '<div class="lastrun" title="Last time it ran was ' + relativeTime + '">' +
@@ -18,14 +17,10 @@ var wrapLastRunMarkup = function(relativeTime) {
          '</div>';
 };
 
-var fromNow = function(milliseconds) {
-  return moment(milliseconds).fromNow();
-};
-
-var lastRun = _.flow(Number, fromNow, wrapLastRunMarkup);
+var lastRun = _.flow(Number, duration.fromNow, wrapLastRunMarkup);
 
 var itemInfo = function(item) {
-  return lastRun(item.finishedAt).concat(duration(item.duration));
+  return lastRun(item.finishedAt).concat(itemDuration(item.duration));
 };
 
 var runningItem = '<div class="loading"><div class="indeterminate"></div></div>';
