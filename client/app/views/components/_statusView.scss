@@ -29,7 +29,8 @@ $status-color-aborted: #f9a825;
   > .duration { text-align: right; }
   > .lastrun { text-align: left; }
 
-  > .duration, > .lastrun {
+  > .duration,
+  > .lastrun {
     @extend .truncate;
     padding: 0 !important;
 
