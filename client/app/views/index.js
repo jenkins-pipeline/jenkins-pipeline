@@ -9,15 +9,11 @@ var pollingSubscribe = require('../helpers/polling').subscribe;
 
 var TWO_MINUTES = 120000;
 
-function hideLoader() { dom.hide('.pipelines-loading'); }
-function showLoader() { dom.show('.pipelines-loading'); }
-function clearContent() { dom.clear('#content-container'); }
-
 function appendError(message) {
   var errorMsg = message || 'An error occurred loading the page. Please try again.';
 
   return function _appendError(err) {
-    dom.append('#content-container', renderError(errorMsg));
+    dom('#content-container').append(renderError(errorMsg));
     console.log(err);
   };
 }
@@ -28,7 +24,7 @@ function fetchPipelineIds() {
 }
 
 function appendPipeline(pipeline) {
-  dom.append('#content-container', renderPipeline(pipeline));
+  dom('#content-container').append(renderPipeline(pipeline));
 }
 
 function fetchPipeline(id) {
@@ -46,11 +42,17 @@ function fetchPipelines() {
 }
 
 function initAsync() {
-  fetchPipelines().catch(appendError()).then(hideLoader);
+  fetchPipelines().catch(appendError()).then(dom('.pipelines-loading').hide);
 }
 
 function subscribeInit() {
-  pollingSubscribe(_.pipe(showLoader, clearContent, initAsync), TWO_MINUTES);
+  var init = _.pipe(
+    dom('.pipelines-loading').show,
+    dom('#content-container').clear,
+    initAsync
+  );
+
+  pollingSubscribe(init, TWO_MINUTES);
 }
 
 module.exports = {

@@ -2,14 +2,11 @@
 
 var $ = require('jquery');
 
-function hide(selector) { $(selector).hide(); }
-function show(selector) { $(selector).show(); }
-function clear(selector) { $(selector).empty(); }
-function append(selector, html) { $(selector).append(html); }
-
-module.exports = {
-  hide: hide,
-  show: show,
-  clear: clear,
-  append: append
+module.exports = function dom(selector) {
+  return {
+    hide: function hide() { $(selector).hide(); },
+    show: function show() { $(selector).show(); },
+    clear: function clear() { $(selector).empty(); },
+    append: function append(html) { $(selector).append(html); }
+  };
 };
