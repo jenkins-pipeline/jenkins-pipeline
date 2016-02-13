@@ -1,0 +1,17 @@
+$status-color-failure: #c62828;
+
+.alert-box {
+  @extend .row;
+
+  > .alert {
+    @extend .s7;
+    @extend .col;
+    @extend .flow-text;
+
+    background-color: lighten($status-color-failure, 30%);
+    border: 1px solid $status-color-failure;
+    font-size: 1em;
+    margin: 1em;
+    padding: 1em;
+  }
+}

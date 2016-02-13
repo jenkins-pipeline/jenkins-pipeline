@@ -1,5 +1,6 @@
 $bg-color: #ECEFF1;
 $font-color: #263238;
+$progress-bar-color: #00b0ff;
 
 body {
   color: $font-color;
@@ -16,15 +17,15 @@ body {
   top: 0;
   right: 2em;
 
-  & > .title { font-size: 2.5em; }
+  > .title { font-size: 2.5em; }
 }
 
 .progress { margin: 0; }
 
 .pipelines-loading {
-  background-color: #00b0ff; // light-blue accent-3
+  background-color: $progress-bar-color;
 
-  & > .loading {
-    background-color: #80d8ff; // light-blue accent-1
+  > .loading {
+    background-color: lighten($progress-bar-color, 25%);
   }
 }

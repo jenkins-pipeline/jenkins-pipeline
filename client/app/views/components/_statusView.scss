@@ -7,7 +7,7 @@ $status-color-aborted: #f9a825;
 @mixin progress-bar($base-color) {
   background-color: $base-color;
 
-  & > .loading {
+  > .loading {
     @extend .progress;
     background-color: lighten($base-color, 20%);
 
@@ -26,14 +26,15 @@ $status-color-aborted: #f9a825;
   &[data-status=unknown] { @include progress-bar($status-color-unknown); }
   &[data-status=aborted] { @include progress-bar($status-color-aborted); }
 
-  & > .duration { text-align: right; }
-  & > .lastrun { text-align: left; }
+  > .duration { text-align: right; }
+  > .lastrun { text-align: left; }
 
-  & > .duration, & > .lastrun {
+  > .duration,
+  > .lastrun {
     @extend .truncate;
     padding: 0 !important;
 
-    & > .icon { margin-right: 5px; }
+    > .icon { margin-right: 5px; }
   }
 }
 

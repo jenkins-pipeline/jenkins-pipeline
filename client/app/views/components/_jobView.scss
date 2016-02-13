@@ -2,26 +2,25 @@
   margin: 1em;
   padding: 0 !important;
 
-  & > .status-box {
+  > .status-box {
     margin: 0;
     padding: 10px 20px !important;
     color: white;
     min-height: 40px;
     font-size: .75em;
 
-    & > .duration, & > .lastrun, & > .loading { @extend .col; }
+    > .duration,
+    > .lastrun,
+    > .loading { @extend .col; }
 
-    & > .duration { @extend .s5; }
-    & > .lastrun { @extend .s7; }
-    & > .loading { @extend .s12; }
-  }
-
-  & > .title-wrapper {
-    padding-bottom: 15px;
-
-    & > .title {
-      font-size: 1em;
-    }
+    > .duration { @extend .s5; }
+    > .lastrun { @extend .s7; }
+    > .loading { @extend .s12; }
   }
 }
 
+.title-wrapper {
+  padding-bottom: 15px;
+
+  > .title { font-size: 1em; }
+}
