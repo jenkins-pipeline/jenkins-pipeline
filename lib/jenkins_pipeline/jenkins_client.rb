@@ -1,3 +1,4 @@
+require 'net/http'
 
 module JenkinsPipeline
   class JenkinsClient
