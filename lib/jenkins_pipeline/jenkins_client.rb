@@ -20,7 +20,7 @@ module JenkinsPipeline
       @token ||= ENV["MONITOR_TOKEN"]
     end
 
-    def create_uri pipeline
+    def create_uri(pipeline)
       if pipeline.fetch("folder") {false}
         root_url = "#{pipeline['root_url']}/job/#{pipeline['folder']}/api/json"
       else

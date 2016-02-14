@@ -52,7 +52,6 @@ describe JenkinsPipeline::Job do
   end
 
   describe "#status" do
-
     context "when job is running" do
       before { jenkins_response["lastBuild"] = { "building" => true } }
       it { expect(subject.status).to eq "running" }
