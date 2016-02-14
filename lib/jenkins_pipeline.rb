@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require 'httparty'
-require 'tilt/erb'
 require 'yaml'
 require 'json'
 require 'httparty'
