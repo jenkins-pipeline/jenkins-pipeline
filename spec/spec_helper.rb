@@ -3,6 +3,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'jenkins_pipeline'
 require 'rack/test'
+require 'webmock/rspec'
 
 def app
   JenkinsPipeline::App.new
