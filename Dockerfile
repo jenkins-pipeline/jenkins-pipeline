@@ -34,7 +34,7 @@ RUN mkdir $app
 #Cache bundle install
 COPY Gemfile* /tmp/
 WORKDIR /tmp
-RUN bundle install
+RUN bundle install --without test
 
 #Cache npm install
 ADD client/package.json /tmp/package.json
