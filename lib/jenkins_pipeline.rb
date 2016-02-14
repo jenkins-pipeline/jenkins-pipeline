@@ -1,8 +1,6 @@
 require 'sinatra/base'
-require 'httparty'
 require 'yaml'
 require 'json'
-require 'httparty'
 require 'dotenv'
 
 Dotenv.load
