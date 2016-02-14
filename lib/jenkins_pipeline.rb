@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'yaml'
 require 'json'
 require 'dotenv'
+require 'net/http'
 
 Dotenv.load
 
