@@ -22,7 +22,7 @@ describe JenkinsPipeline::JenkinsClient do
       end
     end
 
-    context "a pipwline with a folder" do
+    context "a pipeline with a folder" do
       let(:folder) { "folder" }
       it "request the right path" do
         stub = stub_request(:get,  "user:token@jenkins-ci.com/job/#{folder}/api/json?tree=jobs%5Bname,lastBuild%5Bbuilding%5D,lastCompletedBuild%5Bnumber,duration,timestamp,result,changeSet%5Brevisions%5Brevision%5D%7B0,1%7D%5D%5D%5D").to_return(status: 200, body: "{}")
