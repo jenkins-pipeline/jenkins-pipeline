@@ -28,7 +28,8 @@ describe JenkinsPipeline::Job do
       status: "success"
     }
   }
-  let(:subject) { described_class.new(jenkins_response, name, "") }
+  let(:upstream_status) { "success" }
+  let(:subject) { described_class.new(jenkins_response, name, upstream_status) }
 
   describe "#name" do
     it { expect(subject.name).to eq name }
@@ -51,37 +52,37 @@ describe JenkinsPipeline::Job do
   end
 
   describe "#status" do
-    context "job is running" do
+    context "when job is running" do
       before { jenkins_response["lastBuild"] = { "building" => true } }
       it { expect(subject.status).to eq "running" }
     end
 
-    context "job result is sucess" do
+    context "when job result is sucess" do
       it { expect(subject.status).to eq "success" }
     end
 
-    context "job result is failure" do
+    context "when job result is failure" do
       before { jenkins_response["lastCompletedBuild"]["result"] = "FAILURE" }
       it { expect(subject.status).to eq "failure" }
     end
 
-    describe "upstream build number is running" do
-      let(:subject) { described_class.new(jenkins_response, name, "running") }
+    context "when upstream build is running" do
+      let(:upstream_status) { "running" }
       it { expect(subject.status).to eq "unknown" }
     end
 
-    describe "upstream build number is unknown" do
-      let(:subject) { described_class.new(jenkins_response, name, "unknown") }
+    context "when upstream build is unknown" do
+      let(:upstream_status) { "unknown" }
       it { expect(subject.status).to eq "unknown" }
     end
 
-    describe "upstream build number is failure" do
-      let(:subject) { described_class.new(jenkins_response, name, "failure") }
+    context "when upstream build is failure" do
+      let(:upstream_status) { "failure" }
       it { expect(subject.status).to eq "unknown" }
     end
 
-    describe "upstream build number is aborted" do
-      let(:subject) { described_class.new(jenkins_response, name, "aborted") }
+    context "when upstream build is aborted" do
+      let(:upstream_status) { "aborted" }
       it { expect(subject.status).to eq "unknown" }
     end
   end

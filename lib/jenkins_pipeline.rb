@@ -1,10 +1,8 @@
 require 'sinatra/base'
-require 'httparty'
-require 'tilt/erb'
 require 'yaml'
 require 'json'
-require 'httparty'
 require 'dotenv'
+require 'net/http'
 
 Dotenv.load
 

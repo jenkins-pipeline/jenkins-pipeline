@@ -7,3 +7,5 @@ config/*
 */node_modules/*
 .ruby-version
 public/*
+.git
+.bundle
