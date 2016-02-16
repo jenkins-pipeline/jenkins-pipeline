@@ -5,6 +5,5 @@ config/
 .DS_Store
 .byebug_history
 node_modules/
-.ruby-version
 public/
 .bundle
