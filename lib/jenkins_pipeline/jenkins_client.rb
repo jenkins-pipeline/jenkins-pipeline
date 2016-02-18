@@ -4,6 +4,10 @@ module JenkinsPipeline
     def all_jobs_from pipeline
       uri = create_uri(pipeline)
       http = Net::HTTP.new(uri.host, uri.port)
+      if uri.scheme == "https"
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      end
       request = Net::HTTP::Get.new(uri.request_uri)
       request.basic_auth(username, token)
       response = http.request(request)
