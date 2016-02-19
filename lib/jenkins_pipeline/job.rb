@@ -31,7 +31,7 @@ module JenkinsPipeline
     private
 
     def build_status
-      return "unknown" unless @upstream_status == "success"
+      return "unknown" unless @upstream_status == "success" || @upstream_status == ""
       return "running" if build_running?(@last_build)
       @result
     end

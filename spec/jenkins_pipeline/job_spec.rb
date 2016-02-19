@@ -66,6 +66,11 @@ describe JenkinsPipeline::Job do
       it { expect(subject.status).to eq "failure" }
     end
 
+    context "when upstream build is empty" do
+      let(:upstream_status) { "" }
+      it { expect(subject.status).to eq "success" }
+    end
+
     context "when upstream build is running" do
       let(:upstream_status) { "running" }
       it { expect(subject.status).to eq "unknown" }
