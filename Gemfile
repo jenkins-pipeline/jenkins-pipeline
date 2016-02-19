@@ -9,4 +9,6 @@ group :test do
   gem 'rspec'
   gem 'rack-test'
   gem 'webmock'
+  gem 'rubocop', require: false
+  gem 'rake'
 end
