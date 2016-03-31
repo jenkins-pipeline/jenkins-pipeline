@@ -7,7 +7,7 @@ var renderPipeline = require('./components/pipelineView').render;
 var renderError = require('./components/errorView').render;
 var pollingSubscribe = require('../helpers/polling').subscribe;
 
-var TWO_MINUTES = 120000;
+var ONE_MINUTE = 60000;
 
 function appendError(message) {
   var errorMsg = message || 'An error occurred loading the page. Please try again.';
@@ -24,11 +24,17 @@ function fetchPipelineIds() {
 }
 
 function appendPipeline(pipeline) {
-  dom('#content-container').append(renderPipeline(pipeline));
+  var pipelineId = pipeline.name.toLowerCase().replace(' ', '-');
+  var pipelineElement = dom('#' + pipelineId);
+  if (pipelineElement.exists()) {
+    pipelineElement.replace(renderPipeline(pipeline));
+  } else {
+    dom('#content-container').append(renderPipeline(pipeline));
+  }
 }
 
 function fetchPipeline(id) {
-  var errorMsg = 'Fetching Pipeline "'+id+'" failed. Please refresh the page.';
+  var errorMsg = 'Fetching Pipeline "' + id + '" failed. Please refresh the page.';
 
   return request.getJSON('/api/pipelines/' + id).
            then(appendPipeline).
@@ -47,12 +53,10 @@ function initAsync() {
 
 function subscribeInit() {
   var init = _.pipe(
-    dom('.pipelines-loading').show,
-    dom('#content-container').clear,
     initAsync
   );
 
-  pollingSubscribe(init, TWO_MINUTES);
+  pollingSubscribe(init, ONE_MINUTE);
 }
 
 module.exports = {
