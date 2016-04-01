@@ -27,9 +27,8 @@ var setPipelineId = function(pipeline) {
 
 var renderPipeline = function(pipeline) {
   var revision = pipeline.revision ? '#' + pipeline.revision : '';
-  var pipelineId = pipeline.name.toLowerCase().replace(' ', '-');
 
-  return '<section class="row" id="' + pipelineId + '">' +
+  return '<section class="row" id="' + pipeline.id + '">' +
            '<header class="pipeline-title">' +
              '<span class="title">' + pipeline.name + '</span>' +
              '<span class="revision">' + revision + '</span>' +
