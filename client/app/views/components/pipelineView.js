@@ -17,14 +17,6 @@ var calcLastRun = function(pipeline) {
   return _.assign({}, pipeline, { finishedAt: lastRun(pipeline) });
 };
 
-var setPipelineId = function(pipeline) {
-  var pipelineId = function(name) {
-    return name.toLowerCase().replace(' ', '-');
-  };
-
-  return _.assign({}, pipeline, { id: pipelineId(pipeline.name) });
-};
-
 var renderPipeline = function(pipeline) {
   var revision = pipeline.revision ? '#' + pipeline.revision : '';
 
@@ -42,5 +34,5 @@ var renderPipeline = function(pipeline) {
 };
 
 module.exports = {
-  render: _.pipe(calcDuration, calcLastRun, setPipelineId, renderPipeline)
+  render: _.pipe(calcDuration, calcLastRun, renderPipeline)
 };

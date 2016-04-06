@@ -5,7 +5,7 @@ var moment = require('moment');
 
 describe('Pipeline View', function() {
   it('should have pipeline id', function() {
-    var pipeline = { name: 'Pipeline Name' };
+    var pipeline = { id: 'pipeline-name', name: 'Pipeline Name' };
     expect(PipelineView.render(pipeline)).toContain('pipeline-name');
   });
 
