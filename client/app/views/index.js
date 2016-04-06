@@ -24,8 +24,7 @@ function fetchPipelineIds() {
 }
 
 function appendPipeline(pipeline) {
-  var pipelineId = pipeline.name.toLowerCase().replace(' ', '-');
-  var pipelineElement = dom('#' + pipelineId);
+  var pipelineElement = dom('#' + pipeline.id);
   if (pipelineElement.exists()) {
     pipelineElement.replace(renderPipeline(pipeline));
   } else {
