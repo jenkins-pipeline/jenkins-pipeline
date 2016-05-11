@@ -4,7 +4,7 @@
   "description": "An attempt to display a set of builds running in Jenkins as a pipeline, a sequence of builds and its states.",
   "scripts": {
     "lint": "esw app/ spec/ --ext .js",
-    "_clean": "rm -Rv ../public/* | true",
+    "_clean": "rm -rf ../public/* || true",
     "test": "jasmine",
     "test:ci": "npm run lint && npm run test",
     "prebuild": "npm run test:ci && npm run _clean",
