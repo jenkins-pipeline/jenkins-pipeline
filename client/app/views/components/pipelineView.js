@@ -18,10 +18,12 @@ var calcLastRun = function(pipeline) {
 };
 
 var renderPipeline = function(pipeline) {
+  var revision = pipeline.revision ? '#' + pipeline.revision : '';
+
   return '<section class="row">' +
            '<header class="pipeline-title">' +
              '<span class="title">' + pipeline.name + '</span>' +
-             '<span class="revision">#' + pipeline.revision + '</span>' +
+             '<span class="revision">' + revision + '</span>' +
              StatusView.render(pipeline) +
            '</header>' +
            '<section class="row">' +

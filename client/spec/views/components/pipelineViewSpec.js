@@ -23,10 +23,18 @@ describe('Pipeline View', function() {
     expect(PipelineView.render(pipeline)).toContain('job3');
   });
 
-  it('should show the pipeline revision', function() {
-    var pipeline = { revision: '444' };
+  describe('revision', function() {
+    it('should appear', function() {
+      var pipeline = { revision: '444' };
 
-    expect(PipelineView.render(pipeline)).toContain('#444');
+      expect(PipelineView.render(pipeline)).toContain('#444');
+    });
+
+    it('should not appear', function() {
+      var pipeline = { revision: null };
+
+      expect(PipelineView.render(pipeline)).not.toContain('#null');
+    });
   });
 
   describe('status', function() {
